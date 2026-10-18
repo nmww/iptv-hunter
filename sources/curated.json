@@ -1,0 +1,38 @@
+[
+  {
+    "name": "iptv-org-cn",
+    "url": "https://iptv-org.github.io/iptv/channels/cn.m3u",
+    "trust": "high",
+    "note": "iptv-org 官方维护，按国家分类，仅取中国频道"
+  },
+  {
+    "name": "fanmingming-ipv6",
+    "url": "https://live.fanmingming.com/tv/m3u/ipv6.m3u",
+    "trust": "high",
+    "note": "fanmingming/live 维护，国内高可用，央视/卫视/地方台齐全"
+  },
+  {
+    "name": "fanmingming-ipv4",
+    "url": "https://live.fanmingming.com/tv/m3u/ipv4.m3u",
+    "trust": "high",
+    "note": "fanmingming/live 的 IPv4 兼容版（部分网络无 IPv6 时用）"
+  },
+  {
+    "name": "yuechan-live",
+    "url": "https://raw.githubusercontent.com/YueChan/Live/main/IPTV.m3u",
+    "trust": "high",
+    "note": "YueChan/Live 维护，华语频道为主"
+  },
+  {
+    "name": "qingzhen-iptv",
+    "url": "https://raw.githubusercontent.com/zzcabc/qingzhen-iptv/main/result.m3u",
+    "trust": "high",
+    "note": "zzcabc/qingzhen-iptv 维护，国内源整合"
+  },
+  {
+    "name": "huxiaodong-iptv",
+    "url": "https://raw.githubusercontent.com/huxiaodong1984/iptv/main/output/merged.m3u",
+    "trust": "high",
+    "note": "huxiaodong1984/iptv 维护，合并多源"
+  }
+]
