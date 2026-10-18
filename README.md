@@ -106,8 +106,8 @@ iptv-hunter/
 
 1. **加高信任直链种子（骨架来源）**：编辑 `sources/curated.json`，追加一项
    `{"name": "...", "url": "https://.../x.m3u", "trust": "high"}`。
-   这类源由维护者持续更新、可用性高，`fetch` 阶段直接收录、免逐条 ffmpeg 验证，
-   是播放器里“始终有台可看”的保障。**优先用这种方式扩充资源。**
+   这类源由维护者持续更新、可用性通常较高，但**同样要过逐条验证**才会被收录
+   （不再免验证——死链/被地理封锁的也会被过滤掉）。**优先用这种方式扩充资源。**
 2. **加发现入口（元列表）**：编辑 `sources/seeds.json`，追加 `type:"meta"` 的 awesome 类仓库。
    注意：种子只允许 awesome 元列表，**不要**把具体 IPTV 源地址写进 seeds.json。
 3. **加固定本地源**：把任意 `.m3u` 文件放进 `sources/local/`，`fetch_sources.py` 会自动合入
@@ -121,10 +121,24 @@ iptv-hunter/
 pip install -r requirements.txt          # 需要 ffmpeg/ffprobe 已安装并在 PATH
 bash scripts/run_all.sh                  # 跑全量流水线（含推送）
 DRY=1 bash scripts/run_all.sh            # 各阶段 dry-run，不写文件/不推送
-bash scripts/run_all.sh --max 100        # 验证阶段最多 100 条（CI 省时）
 ```
 
 单独调试某个模块：`python scripts/discover_sources.py --dry-run` 等。
+
+### 本地网络自检（个人自用最准，强烈推荐）
+
+GitHub Actions 的验证服务器在**境外**，它验证通过 ≠ 你国内宽带能播（地理封锁/限速）。
+要拿到「你这边真能放」的列表，用本机跑自检脚本（用你家网络逐条探测）：
+
+```bash
+# 本机先装 ffmpeg（含 ffprobe）：Mac `brew install ffmpeg`；Linux `apt install ffmpeg`
+python3 scripts/clean_local.py                 # 读已发布订阅，输出 output/iptv-clean.m3u
+python3 scripts/clean_local.py --group 央视,卫视   # 只保留指定分组
+python3 scripts/clean_local.py --workers 24 --timeout 8
+```
+
+脚本只保留「ffprobe 能取到编码」的源（VLC 同样放不了拿不到编码的流），按响应速度排序，
+输出 `output/iptv-clean.m3u`，VLC 直接打开即可。这是剔除「国内连不上」源最准的办法。
 
 ---
 
