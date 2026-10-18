@@ -138,6 +138,11 @@ def main():
     if not items:
         log.warning("未找到 %s，请先运行 deduplicate.py", DEDUP_PATH)
         return
+    # 高信任直链种子（curated）免验证直接收录，无需在此消耗 ffprobe 配额
+    n_skip = sum(1 for it in items if it.get("trust") == "high")
+    if n_skip:
+        log.info("跳过高信任源验证：%d 条（curated 直链，直接收录）", n_skip)
+        items = [it for it in items if it.get("trust") != "high"]
     if max_n and max_n < len(items):
         log.info("配置限制：本次验证前 %d / %d 条", max_n, len(items))
         items = items[:max_n]
