@@ -105,6 +105,7 @@ _DEFAULT_CONFIG = {
         "workers": "20",
         "layer1_timeout": "5",
         "verify_seconds": "5",
+        "require_layer3": "false",
     },
     "retire": {
         "consecutive_failures_threshold": "7",
