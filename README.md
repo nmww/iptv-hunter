@@ -1,42 +1,38 @@
 # iptv-hunter · 自主发现 IPTV 直播源整合引擎
 
-一个**不预置任何固定源清单**、完全靠运行时网络发现来采集、验证、整合 IPTV 直播源的引擎。
-每天定时自动搜索全网新出现的源，验证通过即接入、失效即淘汰，最终在 Gitee 上产出可被
-VLC / TiviMate / APTV / DIYP 直接订阅的 `iptv.m3u` 直链。
+一个**不预置任何固定源清单**、完全靠运行时网络发现来采集、验证、整合 IPTV 直播源的引擎，
+**并内置一组高信任直链种子**作为播放可用性的骨架。每天定时自动搜索全网新出现的源，验证通过即接入、
+失效即淘汰，最终在 **GitHub** 上产出可被 VLC / TiviMate / APTV / DIYP 直接订阅的 `iptv.m3u` 直链
+（经 jsDelivr CDN 加速，国内可达）。
 
-> ⚠️ 合规提示：本工具仅聚合**公开发布**的播放列表链接（来自 GitHub 公开仓库 / awesome 元列表），
-> 自身不托管任何流媒体内容。可用性由代码中的 `ffprobe` / `ffmpeg` 验证链保障，
+> ⚠️ 合规提示：本工具仅聚合**公开发布**的播放列表链接（来自 GitHub 公开仓库 / awesome 元列表 / 高信任种子），
+> 自身不托管任何流媒体内容。可用性由代码中的 `ffprobe` / `ffmpeg` 验证链 + 维护者信誉为保障，
 > 而非人工“记忆”。请遵守你所在国家/地区的法律法规，勿将产出用于商业分发。
 
 ---
 
 ## 一、最终订阅地址（播放器直接填这个）
 
-**主用（推荐，国内稳定）：jsDelivr 镜像 GitHub 仓库，绕开 Gitee raw 的 Access denied**
+**主用（推荐，国内稳定）：jsDelivr 镜像 GitHub 仓库**
 
 ```
 https://cdn.jsdelivr.net/gh/nmww/iptv-hunter@main/output/iptv.m3u
 ```
 
-**备用 1：GitHub 原生 raw 直链**
+**备用：GitHub 原生 raw 直链（不缓存，实时但国内偶尔慢）**
 
 ```
 https://raw.githubusercontent.com/nmww/iptv-hunter/main/output/iptv.m3u
-```
-
-**备用 2：Gitee 镜像（仓库已同步，但 raw CDN 偶发 `Access denied`，不稳定）**
-
-```
-https://gitee.com/markets2022/iptv-hunter/raw/master/output/iptv.m3u
 ```
 
 - **VLC**：`媒体 → 打开网络串流` 粘贴上面地址；或在 VLC 里 `视图 → 播放列表 → 右键“互联网”→ 添加为播客`。
 - **TiviMate / APTV / DIYP**：在“添加播放列表”处选“URL”，粘贴上面地址即可。
 - 仓库每日更新后，播放器拉取同一 URL 自动获得最新内容（无需改地址）。
 - 纯文本版：把上面地址里的 `iptv.m3u` 换成 `iptv.txt` 即可。
-- **jsDelivr 有边缘缓存**（通常几分钟到 1 小时回源），若想立刻拿到最新，可用「备用 1」raw 直链。
+- **jsDelivr 有边缘缓存**：每次运行结束工作流会自动 `purge` 刷新；若仍想立刻拿最新，用「备用」raw 直链。
 
-> 注：首次运行流水线（或手动执行）后 `iptv.m3u` 才会有内容；在此之前文件仅含头部注释。
+> 注：`iptv.m3u` 由 `output/` 下生成，经 GitHub Actions 回写 `main` 分支后 jsDelivr 才更新。
+> 若看到「本批次无有效源」，通常是运行尚未结束或当天发现层为空，稍后刷新即可。
 
 ---
 
@@ -46,25 +42,24 @@ https://gitee.com/markets2022/iptv-hunter/raw/master/output/iptv.m3u
 iptv-hunter/
 ├── sources/
 │   ├── seeds.json           # 冷启动种子（仅 awesome-iptv 类元列表仓库）
-│   ├── registry.json        # 动态源注册表（程序自动维护）
+│   ├── curated.json         # 【骨架】高信任直链种子（iptv-org/fanmingming 等，免验证直接收录）
+│   ├── registry.json        # 动态源注册表（发现引擎自动维护）
 │   ├── graveyard.json       # 淘汰源墓地（30 天后自动回访复检）
 │   └── local/               # 本地静态补充 m3u（可选，手动放入，不入库）
 ├── scripts/
 │   ├── common.py            # 共享工具（HTTP/日志/归一化/配置）
 │   ├── discover_sources.py  # 【核心】发现层：全网搜索新源（4 渠道）
 │   ├── retire_sources.py    # 淘汰与回访（registry ↔ graveyard）
-│   ├── fetch_sources.py     # 抓取层：下载 m3u 并解析频道
+│   ├── fetch_sources.py     # 抓取层：下载 m3u 并解析频道（含 curated + registry + local）
 │   ├── deduplicate.py       # 去重引擎（URL + 频道名双重归一化）
-│   ├── validate_streams.py  # 流级验证（三层：HTTP/ffprobe/ffmpeg）
-│   ├── generate_m3u.py      # M3U 生成（分组/EPG/时间戳/每频道保最快 N 条）
-│   ├── push_to_gitee.sh     # 推送脚本（本地：git push 方式）
-│   ├── push_to_gitee_api.py # 推送脚本（CI：Gitee API 更新文件，幂等无冲突）
+│   ├── validate_streams.py  # 流级验证（三层：HTTP/ffprobe/ffmpeg，跳过高信任源）
+│   ├── generate_m3u.py      # M3U 生成（分组/EPG/台标/时间戳/每频道保最快 N 条）
 │   └── run_all.sh           # 一键跑完整流水线
 ├── output/
 │   ├── iptv.m3u             # 最终输出（自动生成，已入库）
 │   ├── iptv.txt             # 文本格式
 │   └── log/                 # 验证/更新日志
-├── .github/workflows/daily.yml       # GitHub Actions 每日自动运行（免费）
+├── .github/workflows/daily.yml       # GitHub Actions 每日自动运行（免费，单一平台）
 ├── config.ini               # 全局配置（并发/阈值/淘汰规则）
 └── requirements.txt
 ```
@@ -101,9 +96,13 @@ iptv-hunter/
 
 ## 五、如何手动添加种子 / 静态源
 
-1. **加发现入口（元列表）**：编辑 `sources/seeds.json`，追加 `type:"meta"` 的 awesome 类仓库。
+1. **加高信任直链种子（骨架来源）**：编辑 `sources/curated.json`，追加一项
+   `{"name": "...", "url": "https://.../x.m3u", "trust": "high"}`。
+   这类源由维护者持续更新、可用性高，`fetch` 阶段直接收录、免逐条 ffmpeg 验证，
+   是播放器里“始终有台可看”的保障。**优先用这种方式扩充资源。**
+2. **加发现入口（元列表）**：编辑 `sources/seeds.json`，追加 `type:"meta"` 的 awesome 类仓库。
    注意：种子只允许 awesome 元列表，**不要**把具体 IPTV 源地址写进 seeds.json。
-2. **加固定本地源**：把任意 `.m3u` 文件放进 `sources/local/`，`fetch_sources.py` 会自动合入
+3. **加固定本地源**：把任意 `.m3u` 文件放进 `sources/local/`，`fetch_sources.py` 会自动合入
    （这些文件被 `.gitignore` 忽略，不会上传到仓库）。
 
 ---
@@ -121,27 +120,23 @@ bash scripts/run_all.sh --max 100        # 验证阶段最多 100 条（CI 省�
 
 ---
 
-## 七、部署（每日自动更新，免费）
+## 七、部署（每日自动更新，免费，GitHub 单一平台）
 
-> ⚠️ Gitee Go 是付费服务，本项目改用 **GitHub Actions（公开仓库永久免费、原生 cron）** 做每日自动运行。
-> 产物做双写：① **回写 GitHub 仓库** → 由 **jsDelivr CDN** 提供订阅直链（国内稳定）；② 经 **Gitee API** 同步到 Gitee 作镜像。
+> 本项目**仅托管在 GitHub 公开仓库**（国内 Gitee 对 IPTV 聚合类内容有合规风险，已主动撤离）。
+> 产物通过 **GitHub Actions** 回写本仓库 `main` 分支，由 **jsDelivr CDN** 提供订阅直链（国内稳）。
 
-### 方式 A：GitHub Actions 自动定时（免费，推荐）
-1. 把工程推到你的 **GitHub 公开仓库**（如 `nmww/iptv-hunter`）。
-2. 仓库 → **Settings → Secrets and variables → Actions → New repository secret** 添加：
-   - `GITEE_PAT`：你的 Gitee 私人令牌（值就是建仓库时用的那个，需 `projects` 权限；仅用于同步镜像，可留空）
-   - （`GITHUB_TOKEN` 由 GitHub **自动注入**，无需配置，发现层直接享受搜索配额）
-3. 工作流已放在 `.github/workflows/daily.yml`，**每天北京时间 00:00（= UTC 16:00）** 自动跑。
-4. Actions 标签 → 点 **“Run workflow”** 可手动立即触发一次，验证全流程。
+### GitHub Actions 自动定时（免费，已配好）
+1. 工程已位于 `nmww/iptv-hunter`（公开仓库）。
+2. 无需任何密钥：`GITHUB_TOKEN` 由 GitHub 自动注入（发现层搜索配额即用）。
+3. 工作流在 `.github/workflows/daily.yml`，**每天北京时间 00:00（= UTC 16:00）** 自动跑。
+4. 每次运行结束会 `purge` jsDelivr 缓存，订阅地址即时刷新。
+5. Actions 标签页 → 点 **“Run workflow”** 可手动立即触发一次。
 
-> 产物①通过本仓库 `git commit + push`（用自动 `GITHUB_TOKEN`）回写 `output/` → jsDelivr 可订阅；
-> 产物②通过 `scripts/push_to_gitee_api.py`（Gitee contents API）同步到 Gitee，与 git 历史解耦，无冲突。
-
-### 方式 B：本地 / 云服务器定时任务（等价效果，无需 GitHub）
+### 本地 / 云服务器定时任务（等价效果，无需 GitHub Actions）
 ```bash
-# 每天北京 02:00 执行（crontab -e）
-0 2 * * * cd /path/to/iptv-hunter && GITEE_PUSH_TOKEN=xxx GITEE_REPO_URL=https://oauth2:xxx@gitee.com/markets2022/iptv-hunter.git GITHUB_TOKEN=yyy bash scripts/run_all.sh >> output/log/cron.log 2>&1
-```
+# 每天北京 02:00 执行（crontab -e）；产物自行 git 提交回仓库即可
+0 2 * * * cd /path/to/iptv-hunter && GITHUB_TOKEN=yyy bash scripts/run_all.sh >> output/log/cron.log 2>&1 && \
+  cd /path/to/iptv-hunter && git add output/ && git commit -m "update" && git push origin main
 
 ---
 
@@ -149,12 +144,11 @@ bash scripts/run_all.sh --max 100        # 验证阶段最多 100 条（CI 省�
 
 | 现象 | 可能原因 | 处理 |
 |------|----------|------|
-| `iptv.m3u` 只有头部注释「本批次无有效源」 | 首次尚未跑通 / 当天发现层 0 入库 / 验证全挂 | 手动触发一次流水线，看 Actions 日志的「新增源条目」数 |
-| Gitee raw 报 `Access denied` | Gitee raw CDN 对热链/程序的限制 | **改用 jsDelivr 主订阅地址**（见第一节），Gitee 仅作镜像 |
-| 发现层新增 = 0 | 查询词被二次编码 / 准入 stars 门槛过狠 | 已修复（v2）：查询改原始字符 + 准入不再卡 stars；必要时 `discover --dry-run` 观察 |
+| `iptv.m3u` 只有头部注释「本批次无有效源」 | 运行尚未结束 / 当天发现层 0 入库 / 验证全挂 | 手动触发一次流水线，看 Actions 日志的「新增源条目」数 |
+| jsDelivr 拉到的是旧内容 | CDN 边缘缓存未刷新 | 运行结束已自动 purge；或改用「备用」raw 直链即时获取 |
+| 发现层新增 = 0 | 查询词被二次编码 / 准入 stars 门槛过狠 | 已修复：查询改原始字符 + 准入不再卡 stars；必要时 `discover --dry-run` 观察 |
 | `ffprobe/ffmpeg` 报错 | 本机未装或不在 PATH | `brew install ffmpeg`（Mac）/ `apt install ffmpeg`（Linux） |
 | 验证极慢 / CI 超时 | 流条数过多 | `config.ini` 设 `validate.max_streams` 小值（如 200） |
-| 推送失败 `exit 1` | 令牌无权限 / 分支名不对 | 确认令牌含 `projects`；分支 `master`/`main` 与仓库一致 |
 | 大量源很快被淘汰 | 源本身失效 / 网络出口被地理封锁 | 属正常；引擎会自动替换，可放宽 `consecutive_failures_threshold` |
 
 ---
@@ -176,7 +170,9 @@ python3 -c "import json;g=json.load(open('sources/graveyard.json'));print('墓�
 
 ## 十、设计红线（已落实到代码）
 
-1. **禁止白名单**：除 `seeds.json` 的 awesome 元列表外，无任何硬编码源地址；全部运行时发现。
-2. **代码即猎手**：发现由 Python（GitHub Search API + HTML 解析）完成，而非人工列举。
-3. **质量硬门槛**：每个源必须过仓库级准入 + 三层流级验证才入库。
-4. **动态注册表**：所有源的增删由程序自动完成，禁止人工维护 `registry.json`。
+1. **发现层禁止白名单**：除 `seeds.json` 的 awesome 元列表外，发现引擎不硬编码任何具体源地址。
+2. **高信任种子是显式例外**：`sources/curated.json` 收录的维护良好公开 m3u（iptv-org / fanmingming 等）
+   作为播放可用性的骨架，免逐条验证直接收录——这是**有意**的可靠来源，而非“预置清单”作弊。
+3. **代码即猎手**：发现由 Python（GitHub Search API + HTML 解析）完成，而非人工列举。
+4. **质量硬门槛**：registry 中的发现源必须过仓库级准入 + 三层流级验证才入库。
+5. **动态注册表**：registry / graveyard 的增删由程序自动完成，禁止人工维护。
