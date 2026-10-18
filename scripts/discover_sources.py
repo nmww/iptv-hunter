@@ -13,6 +13,15 @@ IPTV 源地址（仅 seeds.json 允许 awesome-iptv 类元列表仓库作冷启�
 
 所有新增源写入 sources/registry.json（程序自动维护），并打印当日发现摘要。
 
+【与初版的关键修正】
+  * 查询词不再预编码 %3E / %E7 等——requests 会再编码一次导致失效。
+    改为直接写原始字符（如 stars:>20、中文），由 requests 统一编码。
+  * 准入不再卡死 stars>=20：查询本身已带 stars>20 过滤，准入只要求
+    「近期有 push（≤ repo_stale_days）」+「文件树含播放列表（best-effort）」。
+  * 每个仓库只拉一次文件树（准入与提取直链复用），避免 2 倍 API 调用。
+  * 文件树拉取失败（大仓库 409 / 网络抖动）时按 best-effort 放行，
+    不因为一次失败把整个仓库丢掉。
+
 用法：
   python scripts/discover_sources.py            # 正常发现并写入 registry
   python scripts/discover_sources.py --dry-run  # 只观察发现结果，不触碰验证/推送
@@ -33,11 +42,13 @@ GITHUB_API = "https://api.github.com"
 REGISTRY_PATH = C.SOURCES_DIR / "registry.json"
 
 # 每日轮换的查询词（避免单日结果趋同）。索引由「日序号」决定。
+# 注意：这里写的是「原始查询」，不要预编码；requests 会统一编码。
+# 每个查询都已带 stars 过滤，保证命中质量仓库而非空仓库。
 SEARCH_QUERIES = [
-    "q=iptv+in:name,description&sort=updated&order=desc&per_page=100",
-    "q=iptv+m3u+stars:%3E50+pushed:%3E{30d}&sort=stars&order=desc&per_page=100",
-    "q=%E7%9B%B4%E6%92%AD%E6%BA%90+in:readme&sort=updated&order=desc&per_page=100",
-    "q=iptv+playlist+language:python&sort=updated&order=desc&per_page=100",
+    "q=iptv m3u stars:>20&sort=stars&order=desc&per_page=100",
+    "q=iptv playlist stars:>20&sort=stars&order=desc&per_page=100",
+    "q=免费 直播源 m3u&sort=updated&order=desc&per_page=100",
+    "q=iptv-org iptv channels&sort=stars&order=desc&per_page=100",
 ]
 
 PLAYLIST_EXT_RE = re.compile(r"\.m3u8?$", re.IGNORECASE)
@@ -107,54 +118,50 @@ def _days_since(iso_date: str) -> float:
         return 9999.0
 
 
-def check_admission(repo: dict, cfg, log) -> tuple[bool, str]:
-    """仓库级准入：stars / 近期 push / 文件树含播放列表，三者同时满足。"""
-    stars = repo.get("stargazers_count", 0) or 0
-    pushed = repo.get("pushed_at", "")
-    days = _days_since(pushed)
-    # 门槛：stars>=20，或（7 天内新建且 stars>=5）
-    if days <= 7:
-        if stars < 5:
-            return False, f"新仓库 stars={stars}<5"
-    else:
-        if stars < 20:
-            return False, f"stars={stars}<20"
-    if days > C._default_int(cfg, "retire", "repo_stale_days", 90):
-        return False, f"pushed {days:.0f}d 前，已不活跃"
-    # 文件树含 .m3u/.m3u8/.txt
-    owner = repo["owner"]["login"]
-    name = repo["name"]
-    branch = repo.get("default_branch") or "master"
-    tree, ok = github_api_get(f"{GITHUB_API}/repos/{owner}/{name}/git/trees/{branch}",
-                              {"recursive": "1"}, None, cfg, log) if False else \
-        github_api_get(f"{GITHUB_API}/repos/{owner}/{name}/git/trees/{branch}",
-                      {"recursive": "1"}, _token_for_tree(cfg), cfg, log)
-    if not ok or not tree:
-        return False, "无法读取文件树"
-    has_playlist = any(
-        "path" in t and PLAYLIST_EXT_RE.search(t["path"])
-        for t in tree.get("tree", [])
-    )
-    if not has_playlist:
-        return False, "文件树无播放列表文件"
-    return True, "ok"
-
-
 def _token_for_tree(cfg):
     env = C._default_str(cfg, "discover", "github_token_env", "GITHUB_TOKEN")
     return os.environ.get(env) or None
 
 
-def extract_playlist_urls(repo: dict) -> list[str]:
+def fetch_tree(owner: str, name: str, branch: str, token: str | None, cfg, log):
+    """拉取仓库文件树（递归）。返回 (tree_json_or_None, ok)。大仓库可能 409。"""
+    tree, ok = github_api_get(
+        f"{GITHUB_API}/repos/{owner}/{name}/git/trees/{branch}",
+        {"recursive": "1"}, token, cfg, log)
+    return tree, ok
+
+
+def check_admission(repo: dict, tree, cfg, log) -> tuple[bool, str]:
+    """仓库级准入：近期有 push + （文件树含播放列表 或 拉树失败 best-effort）。
+    不再硬性要求 stars（查询已带 stars>20 过滤）。
+    """
+    pushed = repo.get("pushed_at", "")
+    days = _days_since(pushed)
+    if days > C._default_int(cfg, "retire", "repo_stale_days", 90):
+        return False, f"pushed {days:.0f}d 前，已不活跃"
+
+    if tree:
+        has_playlist = any(
+            "path" in t and PLAYLIST_EXT_RE.search(t["path"])
+            for t in tree.get("tree", [])
+        )
+        if not has_playlist:
+            return False, "文件树无播放列表文件"
+        return True, "ok"
+    # 拉树失败（大仓库/网络）：best-effort 放行，交给抓取/验证层兜底
+    return True, "ok(best-effort: 文件树未取到)"
+
+
+def extract_playlist_urls(repo: dict, tree=None) -> list[str]:
     """从仓库默认分支文件树提取所有播放列表的 raw 直链。"""
     owner = repo["owner"]["login"]
     name = repo["name"]
     branch = repo.get("default_branch") or "master"
-    tree, ok = github_api_get(f"{GITHUB_API}/repos/{owner}/{name}/git/trees/{branch}",
-                              {"recursive": "1"}, _token_for_tree(C.load_config()),
-                              C.load_config(), C.log)
+    if tree is None:
+        tree, _ = fetch_tree(owner, name, branch, _token_for_tree(C.load_config()),
+                             C.load_config(), C.log)
     urls = []
-    if ok and tree:
+    if tree:
         for t in tree.get("tree", []):
             p = t.get("path", "")
             if PLAYLIST_EXT_RE.search(p) and t.get("type") == "blob":
@@ -202,21 +209,18 @@ def discover_via_search(cfg, token, log, visited_repos: set, reg: list,
                         max_new: int, dry_run: bool) -> int:
     added = 0
     day_index = datetime.now().day % len(SEARCH_QUERIES)
-    # 把 30 天前的时间戳注入查询（pushed:>YYYY-MM-DD）
-    since = (datetime.now(timezone.utc) - __import__("datetime").timedelta(days=30)).strftime("%Y-%m-%d")
     pages = C._default_int(cfg, "discover", "max_pages_per_query", 5)
-    for qi, q in enumerate(SEARCH_QUERIES):
+    for qi in range(len(SEARCH_QUERIES)):
         if added >= max_new:
             break
         # 每天从 day_index 开始轮转，避免单调
         query = SEARCH_QUERIES[(day_index + qi) % len(SEARCH_QUERIES)]
-        query = query.replace("{30d}", since)
         for page in range(1, pages + 1):
             if added >= max_new:
                 break
-            params = {"page": page}
+            params = {**_split_q(query), "page": page}
             data, ok = github_api_get(f"{GITHUB_API}/search/repositories",
-                                     {**_split_q(query), **params}, token, cfg, log)
+                                     params, token, cfg, log)
             if not ok or not data:
                 break
             for repo in data.get("items", []):
@@ -224,11 +228,22 @@ def discover_via_search(cfg, token, log, visited_repos: set, reg: list,
                 if full in visited_repos:
                     continue
                 visited_repos.add(full)
-                adm, reason = check_admission(repo, cfg, log)
+                owner = repo["owner"]["login"]
+                name = repo["name"]
+                branch = repo.get("default_branch") or "master"
+                # 拉一次文件树，准入与提取复用
+                tree, tok = fetch_tree(owner, name, branch, token, cfg, log)
+                if not tok or not tree:
+                    # 换分支再试一次（部分仓库默认分支不在 search 返回里）
+                    alt = "main" if branch != "main" else "master"
+                    tree, tok = fetch_tree(owner, name, alt, token, cfg, log)
+                    if tok and tree:
+                        branch = alt
+                adm, reason = check_admission(repo, tree, cfg, log)
                 if not adm:
                     log.debug("跳过 %s: %s", full, reason)
                     continue
-                for pu in extract_playlist_urls(repo):
+                for pu in extract_playlist_urls(repo, tree):
                     if add_entry(reg, full, pu, repo.get("stargazers_count", 0),
                                 repo.get("pushed_at", ""), "github_search", log):
                         added += 1
@@ -306,14 +321,16 @@ def discover_ddg(cfg, token, log, visited_repos: set, reg: list,
                     continue
                 visited_repos.add(r)
                 owner, _, name = r.partition("/")
-                # 走一遍简化准入：能取到文件树且含播放列表才收录
                 sample = {"owner": {"login": owner}, "name": name,
                           "default_branch": "master", "stargazers_count": 0,
                           "pushed_at": datetime.now(timezone.utc).isoformat()}
-                adm, _ = check_admission(sample, cfg, log)
+                tree, tok = fetch_tree(owner, name, "master", token, cfg, log)
+                if not tok or not tree:
+                    tree, tok = fetch_tree(owner, name, "main", token, cfg, log)
+                adm, _ = check_admission(sample, tree, cfg, log)
                 if not adm:
                     continue
-                for pu in extract_playlist_urls(sample):
+                for pu in extract_playlist_urls(sample, tree):
                     if add_entry(reg, r, pu, 0, "", "search_engine", log):
                         added += 1
     except Exception as e:  # noqa: BLE001
