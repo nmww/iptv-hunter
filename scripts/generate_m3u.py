@@ -49,15 +49,20 @@ def main():
     dedup = C.read_json(DEDUP_PATH, default=[])
     validated = C.read_json(VALIDATED_PATH, default={})
 
-    # 收录规则：验证通过 或 高信任直链种子（curated）。
-    # 高信任源由维护者保障可用性，免逐条 ffmpeg 验证，保证播放器始终有内容。
+    # 收录规则：仅保留「验证通过」的流。高信任直链（curated）不再免验证——
+    # 它们同样可能是死链/被地理封锁，未通过验证的一律不进列表。
+    # 保护：若本批次根本没有验证数据（validate 未跑），则降级为全部收录，避免列表清空。
+    has_validation = bool(validated)
     valid = []
     for c in dedup:
         res = validated.get(c["norm_url"], {})
-        if res.get("ok") or c.get("trust") == "high":
+        if res.get("ok") or not has_validation:
             c["resp_time_ms"] = res.get("resp_time_ms", 0)
             valid.append(c)
-    log.info("收录条目：%d（验证通过 + 高信任直链）", len(valid))
+    if has_validation:
+        log.info("收录条目：%d（仅验证通过）", len(valid))
+    else:
+        log.warning("无验证数据，降级收录全部 %d 条（建议先跑 validate_streams.py）", len(valid))
 
     # 按归一化频道名聚合，按响应时间升序保留前 N
     by_name = defaultdict(list)
