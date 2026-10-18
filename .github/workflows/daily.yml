@@ -2,9 +2,11 @@ name: IPTV Daily Update
 
 # 免费自动定时运行方案（替代付费的 Gitee Go）
 # - 公开仓库：GitHub Actions 完全免费、无限分钟
-# - 原生 cron：每天北京时间 00:00（= UTC 16:00）自动跑一次
-# - 自带 GITHUB_TOKEN：发现层直接享受 5000/h 搜索配额，无需你额外申请
-# - 产物通过 Gitee contents API 更新到 Gitee，VLC 订阅直链实时刷新
+# - 原生 cron：每天北京时间 00:00（= UTC 前一天 16:00）自动跑一次
+# - 自带 GITHUB_TOKEN：发现层直接享受搜索配额，无需你额外申请
+# - 产物落两处：
+#    ① 回写本 GitHub 仓库 → 由 jsDelivr CDN 提供订阅直链（国内稳定，绕开 Gitee raw 的 Access denied）
+#    ② 经 Gitee contents API 同步到 Gitee 仓库（markets2022/iptv-hunter）作为镜像备份
 #
 # 前置（一次性，在 GitHub 仓库 Settings → Secrets and variables → Actions 添加）：
 #   GITEE_PAT  = 你的 Gitee 私人令牌（值就是建仓库时用的那个，需 projects 权限）
@@ -17,7 +19,7 @@ on:
   workflow_dispatch: {}   # 允许在 Actions 页面手动点 "Run workflow" 立即跑
 
 permissions:
-  contents: read
+  contents: write   # 需要回写 output/ 到本仓库（供 jsDelivr / raw.githubusercontent 订阅）
 
 jobs:
   update:
@@ -38,15 +40,25 @@ jobs:
       - name: Install Python deps
         run: pip install -r requirements.txt
 
-      - name: Run pipeline (discover→retire→fetch→dedup→validate→generate→push)
+      - name: Run pipeline (discover→retire→fetch→dedup→validate→generate)
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # 自带：发现层 5000/h 配额
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # 自带：发现层搜索配额
           GITEE_PAT: ${{ secrets.GITEE_PAT }}         # 手动配置：推 Gitee 用
           GITEE_USE_API: '1'                          # 走 API 推送（非 git push）
         run: bash scripts/run_all.sh --max 300        # 验证最多 300 条，控制时长
 
-      # run_all 第 7 步已按 GITEE_USE_API=1 调用 push_to_gitee_api.py，
-      # 此处无需再 push。若上一步未推送（如 GITEE_PAT 缺失），这里兜底提醒。
+      # run_all 第 7 步已按 GITEE_USE_API=1 调用 push_to_gitee_api.py（同步到 Gitee 镜像）
+
+      - name: Commit playlist back to GitHub (jsDelivr / raw 源)
+        if: always()
+        run: |
+          git config user.name "iptv-bot"
+          git config user.email "bot@local"
+          git add output/iptv.m3u output/iptv.txt \
+                  sources/registry.json sources/graveyard.json
+          git diff --cached --quiet || git commit -m "chore: update playlist $(date -u +%FT%TZ)"
+          git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/nmww/iptv-hunter.git" HEAD:main
+
       - name: Verify push result
         if: env.GITEE_PAT == ''
-        run: echo "::warning::未配置 GITEE_PAT，本次仅本地运行未推送到 Gitee"
+        run: echo "::warning::未配置 GITEE_PAT，本次仅本地运行未推送到 Gitee 镜像"
