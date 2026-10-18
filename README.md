@@ -13,25 +13,33 @@
 
 ## 一、最终订阅地址（播放器直接填这个）
 
-**主用（推荐，国内稳定）：jsDelivr 镜像 GitHub 仓库**
+**主用（推荐，国内最稳、无缓存延迟）：GitHub Release 直链**
 
 ```
-https://cdn.jsdelivr.net/gh/nmww/iptv-hunter@main/output/iptv.m3u
+https://github.com/nmww/iptv-hunter/releases/latest/download/iptv.m3u
 ```
 
-**备用：GitHub 原生 raw 直链（不缓存，实时但国内偶尔慢）**
+> 走 GitHub 发行 CDN（objects.githubusercontent.com），每次流水线自动更新 `latest` 发行版，
+> 没有 jsDelivr `@main` 浮动标签在部分国内节点的缓存滞后问题，拉到即最新。
+
+**备用 A：GitHub 原生 raw 直链（实时、不缓存，国内偶尔慢）**
 
 ```
 https://raw.githubusercontent.com/nmww/iptv-hunter/main/output/iptv.m3u
 ```
 
+**备用 B：jsDelivr 镜像（国内节点可能有数小时缓存滞后，勿作首选）**
+
+```
+https://cdn.jsdelivr.net/gh/nmww/iptv-hunter@main/output/iptv.m3u
+```
+
 - **VLC**：`媒体 → 打开网络串流` 粘贴上面地址；或在 VLC 里 `视图 → 播放列表 → 右键“互联网”→ 添加为播客`。
 - **TiviMate / APTV / DIYP**：在“添加播放列表”处选“URL”，粘贴上面地址即可。
 - 仓库每日更新后，播放器拉取同一 URL 自动获得最新内容（无需改地址）。
-- 纯文本版：把上面地址里的 `iptv.m3u` 换成 `iptv.txt` 即可。
-- **jsDelivr 有边缘缓存**：每次运行结束工作流会自动 `purge` 刷新；若仍想立刻拿最新，用「备用」raw 直链。
+- 纯文本版：把上面地址里的 `iptv.m3u` 换成 `iptv.txt` 即可（Release 版：`.../latest/download/iptv.txt`）。
 
-> 注：`iptv.m3u` 由 `output/` 下生成，经 GitHub Actions 回写 `main` 分支后 jsDelivr 才更新。
+> 注：`output/iptv.m3u` 经 GitHub Actions 回写 `main` 分支，并同步发布到 `latest` 发行版供主用地址拉取。
 > 若看到「本批次无有效源」，通常是运行尚未结束或当天发现层为空，稍后刷新即可。
 
 ---
@@ -123,13 +131,15 @@ bash scripts/run_all.sh --max 100        # 验证阶段最多 100 条（CI 省�
 ## 七、部署（每日自动更新，免费，GitHub 单一平台）
 
 > 本项目**仅托管在 GitHub 公开仓库**（国内 Gitee 对 IPTV 聚合类内容有合规风险，已主动撤离）。
-> 产物通过 **GitHub Actions** 回写本仓库 `main` 分支，由 **jsDelivr CDN** 提供订阅直链（国内稳）。
+> 产物通过 **GitHub Actions** 回写本仓库 `main` 分支，并发布到 `latest` 发行版——
+> 订阅主用地址走 GitHub 发行 CDN（`releases/latest/download/iptv.m3u`，国内稳、无浮动缓存延迟）。
+> jsDelivr 镜像仅作备用（部分国内节点缓存滞后）。
 
 ### GitHub Actions 自动定时（免费，已配好）
 1. 工程已位于 `nmww/iptv-hunter`（公开仓库）。
 2. 无需任何密钥：`GITHUB_TOKEN` 由 GitHub 自动注入（发现层搜索配额即用）。
 3. 工作流在 `.github/workflows/daily.yml`，**每天北京时间 00:00（= UTC 16:00）** 自动跑。
-4. 每次运行结束会 `purge` jsDelivr 缓存，订阅地址即时刷新。
+4. 每次运行结束会：① 发布/更新 `latest` 发行版（更新主用订阅地址）；② `purge` jsDelivr 备用缓存。
 5. Actions 标签页 → 点 **“Run workflow”** 可手动立即触发一次。
 
 ### 本地 / 云服务器定时任务（等价效果，无需 GitHub Actions）
@@ -145,7 +155,7 @@ bash scripts/run_all.sh --max 100        # 验证阶段最多 100 条（CI 省�
 | 现象 | 可能原因 | 处理 |
 |------|----------|------|
 | `iptv.m3u` 只有头部注释「本批次无有效源」 | 运行尚未结束 / 当天发现层 0 入库 / 验证全挂 | 手动触发一次流水线，看 Actions 日志的「新增源条目」数 |
-| jsDelivr 拉到的是旧内容 | CDN 边缘缓存未刷新 | 运行结束已自动 purge；或改用「备用」raw 直链即时获取 |
+| 订阅地址拉到的是旧内容 | jsDelivr `@main` 浮动缓存滞后（国内节点尤甚） | 主用改走 Release 直链 `releases/latest/download/iptv.m3u`；或临时用 raw 备用直链 |
 | 发现层新增 = 0 | 查询词被二次编码 / 准入 stars 门槛过狠 | 已修复：查询改原始字符 + 准入不再卡 stars；必要时 `discover --dry-run` 观察 |
 | `ffprobe/ffmpeg` 报错 | 本机未装或不在 PATH | `brew install ffmpeg`（Mac）/ `apt install ffmpeg`（Linux） |
 | 验证极慢 / CI 超时 | 流条数过多 | `config.ini` 设 `validate.max_streams` 小值（如 200） |
