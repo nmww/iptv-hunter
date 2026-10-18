@@ -49,14 +49,15 @@ def main():
     dedup = C.read_json(DEDUP_PATH, default=[])
     validated = C.read_json(VALIDATED_PATH, default={})
 
-    # 仅保留验证通过的条目
+    # 收录规则：验证通过 或 高信任直链种子（curated）。
+    # 高信任源由维护者保障可用性，免逐条 ffmpeg 验证，保证播放器始终有内容。
     valid = []
     for c in dedup:
         res = validated.get(c["norm_url"], {})
-        if res.get("ok"):
+        if res.get("ok") or c.get("trust") == "high":
             c["resp_time_ms"] = res.get("resp_time_ms", 0)
             valid.append(c)
-    log.info("验证通过条目：%d", len(valid))
+    log.info("收录条目：%d（验证通过 + 高信任直链）", len(valid))
 
     # 按归一化频道名聚合，按响应时间升序保留前 N
     by_name = defaultdict(list)
@@ -85,10 +86,14 @@ def main():
                 [g for g in grouped if g not in desired_groups]
         for g in order:
             for c in grouped[g]:
-                tid = _slug(c["norm_name"])
+                attrs = c.get("attrs") or {}
+                tid = attrs.get("tvg-id") or _slug(c["norm_name"])
+                tname = attrs.get("tvg-name") or c["channel"]
+                logo = attrs.get("tvg-logo") or ""
+                grp = attrs.get("group-title") or g
                 lines.append(
-                    f'#EXTINF:-1 tvg-id="{tid}" tvg-name="{c["channel"]}" '
-                    f'tvg-logo="" group-title="{g}",{c["channel"]}'
+                    f'#EXTINF:-1 tvg-id="{tid}" tvg-name="{tname}" '
+                    f'tvg-logo="{logo}" group-title="{grp}",{c["channel"]}'
                 )
                 lines.append(c["url"])
         return "\n".join(lines) + "\n"
