@@ -1,0 +1,21 @@
+# 中间产物（体积大、可重建，不入库）
+output/_channels_raw.json
+output/_channels_dedup.json
+output/_validated.json
+output/log/*.log
+
+# Python
+__pycache__/
+*.pyc
+
+# 本地补充源（用户自己放，不入库）
+sources/local/*
+!sources/local/.gitkeep
+
+# 密钥/环境
+.env
+*.token
+
+# 系统
+.DS_Store
+*.tmp
