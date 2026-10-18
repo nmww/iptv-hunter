@@ -32,6 +32,28 @@ RAW_PATH = C.OUTPUT_DIR / "_channels_raw.json"
 
 _ATTR_RE = re.compile(r'(\w[\w-]*)="([^"]*)"')
 
+# 仅允许 http/https 协议；组播/内网地址在家庭宽带下无法播放，一律丢弃
+_UNPLAYABLE_RE = re.compile(
+    r"^(rtp|rtsp|udp|srt|rtmp|mms|file):", re.IGNORECASE
+)
+_MULTICAST_RE = re.compile(r"(239\.|224\.|225\.|226\.|227\.|228\.|229\.|233\.|234\.|235\.|236\.|237\.|238\.)")
+_IPV6_LITERAL_RE = re.compile(r"\[[0-9a-fA-F:]+\]")  # 裸 IPv6 字面量（内网单播，家庭网络通常不可达）
+
+
+def is_playable_url(url: str) -> bool:
+    """家庭宽带可播放的源判定：必须是 http/https，且非组播、非裸 IPv6 内网。"""
+    if not url:
+        return False
+    if _UNPLAYABLE_RE.match(url):
+        return False
+    if not url.lower().startswith(("http://", "https://")):
+        return False
+    if _MULTICAST_RE.search(url):
+        return False
+    if _IPV6_LITERAL_RE.search(url):
+        return False
+    return True
+
 
 def parse_m3u(text: str, source_repo: str, playlist_url: str, log) -> list[dict]:
     """解析 m3u 文本为 [{source_repo, playlist_url, channel, url, attrs, trust}]。
@@ -79,9 +101,14 @@ def fetch_one(url: str, source_repo: str, cfg, log, trust: str = "") -> list[dic
         log.warning("抓取失败（跳过）：%s", url)
         return []
     chs = parse_m3u(body, source_repo, url, log)
+    before = len(chs)
+    chs = [c for c in chs if is_playable_url(c.get("url", ""))]
+    dropped = before - len(chs)
     if trust:
         for c in chs:
             c["trust"] = trust
+    if dropped:
+        log.info("    过滤非可播源（rtp/组播/IPv6内网）：丢弃 %d 条", dropped)
     return chs
 
 
@@ -126,6 +153,7 @@ def main():
             try:
                 text = f.read_text(encoding="utf-8", errors="ignore")
                 chs = parse_m3u(text, "local/" + f.name, str(f), log)
+                chs = [c for c in chs if is_playable_url(c.get("url", ""))]
                 all_channels.extend(chs)
                 log.info("  本地 %s -> %d 条频道", f.name, len(chs))
             except Exception as e:  # noqa: BLE001
