@@ -4,8 +4,10 @@ name: IPTV Daily Update
 # - 公开仓库：GitHub Actions 完全免费、无限分钟
 # - 原生 cron：每天北京时间 00:00（= UTC 前一天 16:00）自动跑一次
 # - 自带 GITHUB_TOKEN：发现层直接享受搜索配额，无需额外申请
-# - 产物落本仓库 main 分支 → 由 jsDelivr CDN 提供订阅直链（国内稳定）
-# - 每次运行结束主动 purge jsDelivr 缓存，确保订阅地址第一时间刷新
+# - 产物落本仓库 main 分支
+# - 同时发布一个 GitHub Release（tag=latest），订阅走 releases/latest/download/iptv.m3u
+#   该地址走 GitHub 发行 CDN，无 jsDelivr @main 浮动缓存延迟，国内也稳
+# - jsDelivr 作为备用（@main 浮动标签在部分国内节点缓存难清，可能滞后，勿作首选）
 #
 # 前置（一次性，已配好，无需再动）：
 #   （GITEE_PAT 已删除——本项目只走 GitHub，不再依赖 Gitee）
@@ -54,7 +56,17 @@ jobs:
           git diff --cached --quiet || git commit -m "chore: update playlist $(date -u +%FT%TZ)"
           git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/nmww/iptv-hunter.git" HEAD:main
 
-      - name: Purge jsDelivr cache (让订阅地址立即刷新)
+      - name: Publish release latest (GitHub 发行 CDN，国内稳、无浮动缓存延迟)
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release delete latest --yes || true
+          gh release create latest output/iptv.m3u output/iptv.txt \
+            --title "最新直播源 $(date -u +%FT%TZ)" \
+            --notes "自动更新。VLC 订阅：https://github.com/nmww/iptv-hunter/releases/latest/download/iptv.m3u" || true
+
+      - name: Purge jsDelivr cache (备用地址，尽量刷新)
         if: always()
         run: |
           curl -s -m 30 "https://purge.jsdelivr.net/gh/nmww/iptv-hunter@main/output/iptv.m3u" || true
