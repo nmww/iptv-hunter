@@ -12,6 +12,20 @@ VLC / TiviMate / APTV / DIYP 直接订阅的 `iptv.m3u` 直链。
 
 ## 一、最终订阅地址（播放器直接填这个）
 
+**主用（推荐，国内稳定）：jsDelivr 镜像 GitHub 仓库，绕开 Gitee raw 的 Access denied**
+
+```
+https://cdn.jsdelivr.net/gh/nmww/iptv-hunter@main/output/iptv.m3u
+```
+
+**备用 1：GitHub 原生 raw 直链**
+
+```
+https://raw.githubusercontent.com/nmww/iptv-hunter/main/output/iptv.m3u
+```
+
+**备用 2：Gitee 镜像（仓库已同步，但 raw CDN 偶发 `Access denied`，不稳定）**
+
 ```
 https://gitee.com/markets2022/iptv-hunter/raw/master/output/iptv.m3u
 ```
@@ -19,7 +33,8 @@ https://gitee.com/markets2022/iptv-hunter/raw/master/output/iptv.m3u
 - **VLC**：`媒体 → 打开网络串流` 粘贴上面地址；或在 VLC 里 `视图 → 播放列表 → 右键“互联网”→ 添加为播客`。
 - **TiviMate / APTV / DIYP**：在“添加播放列表”处选“URL”，粘贴上面地址即可。
 - 仓库每日更新后，播放器拉取同一 URL 自动获得最新内容（无需改地址）。
-- 纯文本版：`https://gitee.com/markets2022/iptv-hunter/raw/master/output/iptv.txt`
+- 纯文本版：把上面地址里的 `iptv.m3u` 换成 `iptv.txt` 即可。
+- **jsDelivr 有边缘缓存**（通常几分钟到 1 小时回源），若想立刻拿到最新，可用「备用 1」raw 直链。
 
 > 注：首次运行流水线（或手动执行）后 `iptv.m3u` 才会有内容；在此之前文件仅含头部注释。
 
@@ -108,19 +123,19 @@ bash scripts/run_all.sh --max 100        # 验证阶段最多 100 条（CI 省�
 
 ## 七、部署（每日自动更新，免费）
 
-> ⚠️ Gitee Go 是付费服务，本项目已改用 **GitHub Actions（公开仓库永久免费、原生 cron）** 做每日自动运行，
-> 计算结果通过 Gitee API 推送回 Gitee，VLC 订阅直链不变（还是 Gitee raw 那个地址）。
+> ⚠️ Gitee Go 是付费服务，本项目改用 **GitHub Actions（公开仓库永久免费、原生 cron）** 做每日自动运行。
+> 产物做双写：① **回写 GitHub 仓库** → 由 **jsDelivr CDN** 提供订阅直链（国内稳定）；② 经 **Gitee API** 同步到 Gitee 作镜像。
 
 ### 方式 A：GitHub Actions 自动定时（免费，推荐）
 1. 把工程推到你的 **GitHub 公开仓库**（如 `nmww/iptv-hunter`）。
 2. 仓库 → **Settings → Secrets and variables → Actions → New repository secret** 添加：
-   - `GITEE_PAT`：你的 Gitee 私人令牌（值就是建仓库时用的那个，需 `projects` 权限）
-   - （`GITHUB_TOKEN` 由 GitHub **自动注入**，无需配置，发现层直接享受 5000/h 搜索配额）
+   - `GITEE_PAT`：你的 Gitee 私人令牌（值就是建仓库时用的那个，需 `projects` 权限；仅用于同步镜像，可留空）
+   - （`GITHUB_TOKEN` 由 GitHub **自动注入**，无需配置，发现层直接享受搜索配额）
 3. 工作流已放在 `.github/workflows/daily.yml`，**每天北京时间 00:00（= UTC 16:00）** 自动跑。
 4. Actions 标签 → 点 **“Run workflow”** 可手动立即触发一次，验证全流程。
 
-> 产物通过 `scripts/push_to_gitee_api.py`（Gitee contents API）更新到 Gitee，
-> 与代码仓库 git 历史解耦，永远不会出现“非快进推送冲突”。
+> 产物①通过本仓库 `git commit + push`（用自动 `GITHUB_TOKEN`）回写 `output/` → jsDelivr 可订阅；
+> 产物②通过 `scripts/push_to_gitee_api.py`（Gitee contents API）同步到 Gitee，与 git 历史解耦，无冲突。
 
 ### 方式 B：本地 / 云服务器定时任务（等价效果，无需 GitHub）
 ```bash
@@ -134,8 +149,9 @@ bash scripts/run_all.sh --max 100        # 验证阶段最多 100 条（CI 省�
 
 | 现象 | 可能原因 | 处理 |
 |------|----------|------|
-| `iptv.m3u` 只有头部注释 | 首次尚未跑通验证 | 手动触发一次流水线 / `run_all.sh` |
-| 发现层几乎搜不到仓库 | 未配置 `GITHUB_TOKEN`，匿名 60/h 限流 | 在流水线密钥配 `GITHUB_TOKEN` |
+| `iptv.m3u` 只有头部注释「本批次无有效源」 | 首次尚未跑通 / 当天发现层 0 入库 / 验证全挂 | 手动触发一次流水线，看 Actions 日志的「新增源条目」数 |
+| Gitee raw 报 `Access denied` | Gitee raw CDN 对热链/程序的限制 | **改用 jsDelivr 主订阅地址**（见第一节），Gitee 仅作镜像 |
+| 发现层新增 = 0 | 查询词被二次编码 / 准入 stars 门槛过狠 | 已修复（v2）：查询改原始字符 + 准入不再卡 stars；必要时 `discover --dry-run` 观察 |
 | `ffprobe/ffmpeg` 报错 | 本机未装或不在 PATH | `brew install ffmpeg`（Mac）/ `apt install ffmpeg`（Linux） |
 | 验证极慢 / CI 超时 | 流条数过多 | `config.ini` 设 `validate.max_streams` 小值（如 200） |
 | 推送失败 `exit 1` | 令牌无权限 / 分支名不对 | 确认令牌含 `projects`；分支 `master`/`main` 与仓库一致 |
