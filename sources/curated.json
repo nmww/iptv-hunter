@@ -1,38 +1,26 @@
 [
   {
-    "name": "iptv-org-cn",
-    "url": "https://iptv-org.github.io/iptv/channels/cn.m3u",
+    "name": "fanmingming-global",
+    "url": "https://live.fanmingming.com/tv/m3u/global.m3u",
     "trust": "high",
-    "note": "iptv-org 官方维护，按国家分类，仅取中国频道"
-  },
-  {
-    "name": "fanmingming-ipv6",
-    "url": "https://live.fanmingming.com/tv/m3u/ipv6.m3u",
-    "trust": "high",
-    "note": "fanmingming/live 维护，国内高可用，央视/卫视/地方台齐全"
-  },
-  {
-    "name": "fanmingming-ipv4",
-    "url": "https://live.fanmingming.com/tv/m3u/ipv4.m3u",
-    "trust": "high",
-    "note": "fanmingming/live 的 IPv4 兼容版（部分网络无 IPv6 时用）"
+    "note": "国内央视卫视为主，http(s) 可播，带台标"
   },
   {
     "name": "yuechan-live",
     "url": "https://raw.githubusercontent.com/YueChan/Live/main/IPTV.m3u",
     "trust": "high",
-    "note": "YueChan/Live 维护，华语频道为主"
+    "note": "轻量国内 IPTV 源，http(s)"
   },
   {
-    "name": "qingzhen-iptv",
-    "url": "https://raw.githubusercontent.com/zzcabc/qingzhen-iptv/main/result.m3u",
+    "name": "free-tv-iptv",
+    "url": "https://raw.githubusercontent.com/Free-TV/IPTV/master/playlist.m3u8",
     "trust": "high",
-    "note": "zzcabc/qingzhen-iptv 维护，国内源整合"
+    "note": "海外免费电视源，http(s)"
   },
   {
-    "name": "huxiaodong-iptv",
-    "url": "https://raw.githubusercontent.com/huxiaodong1984/iptv/main/output/merged.m3u",
+    "name": "iptv-org-cn",
+    "url": "https://raw.githubusercontent.com/iptv-org/iptv/master/channels/cn.m3u",
     "trust": "high",
-    "note": "huxiaodong1984/iptv 维护，合并多源"
+    "note": "iptv-org 中国频道（经 raw.githubusercontent，CI 可达）"
   }
 ]
