@@ -37,19 +37,26 @@ def main():
         log.warning("未找到 %s，请先运行 fetch_sources.py", RAW_PATH)
         return
 
-    # 第一步：按归一化 URL 去重，保留首次出现
+    # 第一步：按归一化 URL 去重，保留首次出现；
+    # 若重复 URL 出现高信任条目而已有条目非高信任，则升级为高信任。
     seen_url = set()
     by_name = defaultdict(list)
-    unique = []
+    unique_map = {}
+    order = []
     for c in raw:
         nu = c.get("norm_url") or C.normalize_url(c.get("url", ""))
-        if nu in seen_url:
-            continue
-        seen_url.add(nu)
         c["norm_url"] = nu
         c["norm_name"] = c.get("norm_name") or C.normalize_name(c.get("channel", ""))
-        unique.append(c)
+        if nu in seen_url:
+            # 重复 URL：高信任优先
+            if c.get("trust") == "high" and unique_map[nu].get("trust") != "high":
+                unique_map[nu] = c
+            continue
+        seen_url.add(nu)
+        unique_map[nu] = c
+        order.append(nu)
         by_name[c["norm_name"]].append(c)
+    unique = [unique_map[nu] for nu in order]
 
     dup_url = len(raw) - len(unique)
     # 统计同名多源
