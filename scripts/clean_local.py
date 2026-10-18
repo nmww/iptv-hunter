@@ -34,7 +34,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUTPUT_DIR = ROOT / "output"
-DEFAULT_INPUT = "https://github.com/nmww/iptv-hunter/releases/latest/download/iptv.m3u"
+# 按可达性排列的下载源（2026-10-18 用国内家庭宽带实测）：
+#   gh-proxy.com / ghproxy.net = GitHub raw 加速代理（实时内容，无缓存）
+#   gcore.jsdelivr.net = jsDelivr 备用域名（可能有缓存滞后）
+#   github release 直链 = 官方，但国内网络经常整体连不上 github.com，放最后兜底
+DEFAULT_SOURCES = [
+    "https://gh-proxy.com/https://raw.githubusercontent.com/nmww/iptv-hunter/main/output/iptv.m3u",
+    "https://ghproxy.net/https://raw.githubusercontent.com/nmww/iptv-hunter/main/output/iptv.m3u",
+    "https://gcore.jsdelivr.net/gh/nmww/iptv-hunter@main/output/iptv.m3u",
+    "https://github.com/nmww/iptv-hunter/releases/latest/download/iptv.m3u",
+]
 DEFAULT_OUTPUT = OUTPUT_DIR / "iptv-clean.m3u"
 UA = "Mozilla/5.0 (compatible; iptv-hunter-clean/1.0)"
 
@@ -115,7 +124,8 @@ def parse_m3u(text):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--input", default=DEFAULT_INPUT, help="输入 m3u（本地路径或 URL）")
+    ap.add_argument("--input", default=None,
+                    help="输入 m3u（本地路径或 URL）；不填则按 DEFAULT_SOURCES 逐个尝试")
     ap.add_argument("--output", default=str(DEFAULT_OUTPUT), help="输出 m3u")
     ap.add_argument("--workers", type=int, default=16)
     ap.add_argument("--timeout", type=int, default=8, help="单条 ffprobe 超时(秒)")
@@ -129,13 +139,28 @@ def main():
             sys.exit(f"缺少依赖 {bin_}：请先安装 ffmpeg（含 ffprobe）与 curl。")
 
     # 读取输入
-    if args.input.startswith("http://") or args.input.startswith("https://"):
-        print(f"下载订阅源：{args.input}")
-        req = urllib.request.Request(args.input, headers={"User-Agent": UA})
-        with urllib.request.urlopen(req, timeout=60) as r:
-            text = r.read().decode("utf-8", "replace")
-    else:
+    if args.input and not args.input.startswith(("http://", "https://")):
         text = Path(args.input).read_text(encoding="utf-8", errors="replace")
+    else:
+        candidates = [args.input] if args.input else DEFAULT_SOURCES
+        text = None
+        for u in candidates:
+            if not u:
+                continue
+            print(f"尝试下载：{u}")
+            try:
+                req = urllib.request.Request(u, headers={"User-Agent": UA})
+                with urllib.request.urlopen(req, timeout=40) as r:
+                    got = r.read().decode("utf-8", "replace")
+                if got.count("#EXTINF") > 0:
+                    print(f"  成功（{got.count('#EXTINF')} 条频道）")
+                    text = got
+                    break
+                print(f"  内容异常（0 条频道），换下一个源")
+            except Exception as e:  # noqa: BLE001
+                print(f"  失败：{e}")
+        if text is None:
+            sys.exit("所有下载源都不可达。请检查网络，或手动下载 m3u 后用 --input 本地文件路径。")
 
     pairs = parse_m3u(text)
     total = len(pairs)
