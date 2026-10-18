@@ -6,7 +6,7 @@
     "discovered_at": "2026-10-18T16:50:30.618558+08:00",
     "stars": 505,
     "last_push": "2026-10-18T08:48:51Z",
-    "last_verified": "2026-10-18T16:55:42.685282+08:00",
+    "last_verified": "2026-10-18T17:22:15.520756+08:00",
     "consecutive_failures": 0,
     "status": "verified"
   },
@@ -29,7 +29,7 @@
     "stars": 505,
     "last_push": "2026-10-18T08:48:51Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -40,7 +40,7 @@
     "stars": 44,
     "last_push": "2026-09-09T21:03:16Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -62,7 +62,7 @@
     "stars": 1,
     "last_push": "2026-08-11T04:47:29Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -84,7 +84,7 @@
     "stars": 1,
     "last_push": "2026-08-11T04:47:29Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -95,7 +95,7 @@
     "stars": 1,
     "last_push": "2026-08-11T04:47:29Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -150,7 +150,7 @@
     "stars": 1,
     "last_push": "2026-08-11T04:47:29Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -161,7 +161,7 @@
     "stars": 1,
     "last_push": "2026-08-11T04:47:29Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -183,7 +183,7 @@
     "stars": 1,
     "last_push": "2026-08-14T18:14:40Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -205,7 +205,7 @@
     "stars": 1,
     "last_push": "2026-10-14T11:48:08Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -227,7 +227,7 @@
     "stars": 1,
     "last_push": "2026-10-14T11:48:08Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -238,8 +238,8 @@
     "stars": 1,
     "last_push": "2026-10-14T11:48:08Z",
     "last_verified": null,
-    "consecutive_failures": 0,
-    "status": "discovered"
+    "consecutive_failures": 1,
+    "status": "failed"
   },
   {
     "source_repo": "AlbertAnimates/AlbTV",
@@ -249,7 +249,7 @@
     "stars": 1,
     "last_push": "2026-10-14T11:48:08Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -260,8 +260,8 @@
     "stars": 1,
     "last_push": "2026-10-14T11:48:08Z",
     "last_verified": null,
-    "consecutive_failures": 0,
-    "status": "discovered"
+    "consecutive_failures": 1,
+    "status": "failed"
   },
   {
     "source_repo": "krshnaprsad/tv-playlist",
@@ -271,7 +271,7 @@
     "stars": 1,
     "last_push": "2026-10-15T14:18:31Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -282,7 +282,7 @@
     "stars": 0,
     "last_push": "2026-10-17T08:51:05Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -293,7 +293,7 @@
     "stars": 0,
     "last_push": "2026-10-18T07:56:43Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -315,8 +315,8 @@
     "stars": 0,
     "last_push": "2026-10-16T22:00:27Z",
     "last_verified": null,
-    "consecutive_failures": 0,
-    "status": "discovered"
+    "consecutive_failures": 1,
+    "status": "failed"
   },
   {
     "source_repo": "nmusawer/iptv-by-language-country",
@@ -337,7 +337,7 @@
     "stars": 0,
     "last_push": "2026-08-28T23:03:05Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -359,7 +359,7 @@
     "stars": 0,
     "last_push": "2026-08-28T23:03:05Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -447,7 +447,7 @@
     "stars": 0,
     "last_push": "2026-08-28T23:03:05Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -469,7 +469,7 @@
     "stars": 0,
     "last_push": "2026-08-28T23:03:05Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -513,7 +513,7 @@
     "stars": 0,
     "last_push": "2026-08-28T23:03:05Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -524,7 +524,7 @@
     "stars": 0,
     "last_push": "2026-08-28T23:03:05Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -546,7 +546,7 @@
     "stars": 0,
     "last_push": "2026-08-28T23:03:05Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -557,7 +557,7 @@
     "stars": 0,
     "last_push": "2026-10-01T03:00:41Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -579,7 +579,7 @@
     "stars": 0,
     "last_push": "2026-07-29T01:02:47Z",
     "last_verified": null,
-    "consecutive_failures": 1,
+    "consecutive_failures": 2,
     "status": "failed"
   },
   {
@@ -589,6 +589,820 @@
     "discovered_at": "2026-10-18T16:53:34.589536+08:00",
     "stars": 0,
     "last_push": "2026-09-20T16:35:42Z",
+    "last_verified": null,
+    "consecutive_failures": 2,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ad.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.175338+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ae.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.175665+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/af.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.175960+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ag.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.176252+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/al.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.176566+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/am.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.176865+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ao.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.177160+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ar.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.177467+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/at.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.177762+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/at_pluto.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.178057+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/at_samsung.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.178373+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/au.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.178678+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/au_samsung.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.178984+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/aw.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.179295+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/az.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.179640+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ba.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.179962+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ba_morescreens.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.180286+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bb.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.180632+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bd.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.180968+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/be.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.181321+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/be_samsung.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.181665+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bf.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.182011+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bg.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.182375+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bh.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.182731+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bi.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.183090+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bj.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.183471+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bm.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.183841+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bn.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.184211+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bo.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.184602+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bq.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.184987+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/br.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.185387+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/br_pluto.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.185779+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/br_samsung.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.186173+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bs.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.186585+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bw.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.186990+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/by.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.187412+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bz.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.187827+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bz_nexgen.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.188244+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ca.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.188677+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ca_pluto.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.189105+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ca_samsung.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.189553+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ca_stingray.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.189989+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cd.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.190444+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cf.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.190888+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cg.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.191349+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ch.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.191802+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ch_pluto.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.192259+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ch_samsung.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.192732+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ci.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.193200+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "iptv-org/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cl.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.193685+08:00",
+    "stars": 141249,
+    "last_push": "2026-10-18T00:17:59Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "fanmingming/live",
+    "playlist_url": "https://raw.githubusercontent.com/fanmingming/live/main/assets/nosignal.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:23.740017+08:00",
+    "stars": 28617,
+    "last_push": "2026-10-18T08:30:38Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "Free-TV/IPTV",
+    "playlist_url": "https://raw.githubusercontent.com/Free-TV/IPTV/master/playlist.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:24.238604+08:00",
+    "stars": 21180,
+    "last_push": "2026-10-14T23:15:46Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "4gray/iptvnator",
+    "playlist_url": "https://raw.githubusercontent.com/4gray/iptvnator/master/apps/web-e2e/src/fixtures/playback/fatal-media.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:24.843558+08:00",
+    "stars": 7410,
+    "last_push": "2026-10-16T14:52:53Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "qwerttvv/Beijing-IPTV",
+    "playlist_url": "https://raw.githubusercontent.com/qwerttvv/Beijing-IPTV/master/IPTV-Mobile-Multicast.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:25.735137+08:00",
+    "stars": 2307,
+    "last_push": "2026-10-01T02:51:19Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "hujingguang/ChinaIPTV",
+    "playlist_url": "https://raw.githubusercontent.com/hujingguang/ChinaIPTV/main/Global.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:25.943640+08:00",
+    "stars": 2090,
+    "last_push": "2026-10-18T09:08:32Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "kimwang1978/collect-txt",
+    "playlist_url": "https://raw.githubusercontent.com/kimwang1978/collect-txt/main/assets/snapshot/2024-11-09(M)/20241109093810_TV-IPV4.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:26.160437+08:00",
+    "stars": 1965,
+    "last_push": "2026-10-18T08:50:58Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "oxyroid/M3UAndroid",
+    "playlist_url": "https://raw.githubusercontent.com/oxyroid/M3UAndroid/master/app/smartphone/src/debug/assets/default-library/playlist.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:26.810922+08:00",
+    "stars": 1283,
+    "last_push": "2026-09-20T02:50:51Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "akiralereal/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/akiralereal/iptv/main/IPTV-overseas.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:27.050323+08:00",
+    "stars": 1282,
+    "last_push": "2026-10-17T17:47:16Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "best-fan/iptv-sources",
+    "playlist_url": "https://raw.githubusercontent.com/best-fan/iptv-sources/main/cn_all.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:27.499968+08:00",
+    "stars": 871,
+    "last_push": "2026-10-17T20:55:00Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "LITUATUI/M3UPT",
+    "playlist_url": "https://raw.githubusercontent.com/LITUATUI/M3UPT/main/M3U/CNN_Portugal.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:29.543059+08:00",
+    "stars": 656,
+    "last_push": "2026-10-18T08:12:18Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "iptv-ch/iptv-ch.github.io",
+    "playlist_url": "https://raw.githubusercontent.com/iptv-ch/iptv-ch.github.io/master/SwisscomIPTV-brut.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:32.354099+08:00",
+    "stars": 353,
+    "last_push": "2026-10-17T02:35:58Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "doms9/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/doms9/iptv/default/M3U8/TV.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:33.477932+08:00",
+    "stars": 264,
+    "last_push": "2026-10-18T08:20:44Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "hayatiptv/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/hayatiptv/iptv/master/Arnavutluk.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:33.964667+08:00",
+    "stars": 250,
+    "last_push": "2026-10-03T17:34:33Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "infinitel8p/Extreme-InfiniTV",
+    "playlist_url": "https://raw.githubusercontent.com/infinitel8p/Extreme-InfiniTV/main/tests/audio-test.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:36.590440+08:00",
+    "stars": 195,
+    "last_push": "2026-10-14T09:00:04Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "TNT-Likely/xplayer",
+    "playlist_url": "https://raw.githubusercontent.com/TNT-Likely/xplayer/main/website/public/sample.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:37.039494+08:00",
+    "stars": 190,
+    "last_push": "2026-08-14T03:48:32Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "mikehouse/Apple-TV-Player",
+    "playlist_url": "https://raw.githubusercontent.com/mikehouse/Apple-TV-Player/master/AppleTVMultiplatformTests/Resources/test.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:38.190063+08:00",
+    "stars": 187,
+    "last_push": "2026-07-30T05:30:23Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "LionixQ/Zhejiang_Telecom_IPTV",
+    "playlist_url": "https://raw.githubusercontent.com/LionixQ/Zhejiang_Telecom_IPTV/main/Zhejiang_Multicast/Zhejiang_Multicast.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:38.482133+08:00",
+    "stars": 186,
+    "last_push": "2026-10-18T00:16:10Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "bsogulcan/another-iptv-player",
+    "playlist_url": "https://raw.githubusercontent.com/bsogulcan/another-iptv-player/main/shared/fixtures/m3u/attributes.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:40.950375+08:00",
+    "stars": 154,
+    "last_push": "2026-10-07T12:41:25Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "abusaeeidx/Mrgify-BDIX-IPTV",
+    "playlist_url": "https://raw.githubusercontent.com/abusaeeidx/Mrgify-BDIX-IPTV/main/playlist.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:41.654559+08:00",
+    "stars": 143,
+    "last_push": "2026-10-18T05:03:46Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "HaNoiIPTV/HaNoiIPTV.m3u",
+    "playlist_url": "https://raw.githubusercontent.com/HaNoiIPTV/HaNoiIPTV.m3u/master/Chưa đi vào hoạt động/Hà Nội IPTV 2021 (Bản nháp).m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:44.805244+08:00",
+    "stars": 128,
+    "last_push": "2026-10-04T03:17:46Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "Romaxa55/world_ip_tv",
+    "playlist_url": "https://raw.githubusercontent.com/Romaxa55/world_ip_tv/master/output/ad.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:45.705419+08:00",
+    "stars": 122,
+    "last_push": "2026-10-18T02:52:03Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "dhasap/dhanytv",
+    "playlist_url": "https://raw.githubusercontent.com/dhasap/dhanytv/main/dhanytv-ott.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:46.115794+08:00",
+    "stars": 121,
+    "last_push": "2026-10-18T02:40:04Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "Mohammad-Aali/MOE-IPTV-Player",
+    "playlist_url": "https://raw.githubusercontent.com/Mohammad-Aali/MOE-IPTV-Player/main/default-playlist.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:49.901168+08:00",
+    "stars": 87,
+    "last_push": "2026-08-10T13:00:11Z",
+    "last_verified": null,
+    "consecutive_failures": 1,
+    "status": "failed"
+  },
+  {
+    "source_repo": "alantang1977/iptv_api",
+    "playlist_url": "https://raw.githubusercontent.com/alantang1977/iptv_api/main/output/live_ipv4.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-18T17:19:50.614174+08:00",
+    "stars": 85,
+    "last_push": "2026-10-17T05:11:42Z",
     "last_verified": null,
     "consecutive_failures": 1,
     "status": "failed"
