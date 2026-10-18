@@ -13,33 +13,40 @@
 
 ## 一、最终订阅地址（播放器直接填这个）
 
-**主用（推荐，国内最稳、无缓存延迟）：GitHub Release 直链**
+> ⚠️ 国内宽带实测（2026-10-18）：`github.com` 直连下载、`raw.githubusercontent.com`、
+> `cdn.jsdelivr.net` 默认域名经常**整体连不上或缓存卡死旧版**。以下按实测可达性排序。
+
+**主用（实时最新，实测国内可达）：gh-proxy 加速 raw**
+
+```
+https://gh-proxy.com/https://raw.githubusercontent.com/nmww/iptv-hunter/main/output/iptv.m3u
+```
+
+**备用 A：jsDelivr gcore 备用域名（实测国内可达，可能有缓存滞后）**
+
+```
+https://gcore.jsdelivr.net/gh/nmww/iptv-hunter@main/output/iptv.m3u
+```
+
+**备用 B：ghproxy.net（另一个 raw 加速代理）**
+
+```
+https://ghproxy.net/https://raw.githubusercontent.com/nmww/iptv-hunter/main/output/iptv.m3u
+```
+
+**备用 C：GitHub Release 直链（官方，国内网络可能连不上 github.com）**
 
 ```
 https://github.com/nmww/iptv-hunter/releases/latest/download/iptv.m3u
 ```
 
-> 走 GitHub 发行 CDN（objects.githubusercontent.com），每次流水线自动更新 `latest` 发行版，
-> 没有 jsDelivr `@main` 浮动标签在部分国内节点的缓存滞后问题，拉到即最新。
-
-**备用 A：GitHub 原生 raw 直链（实时、不缓存，国内偶尔慢）**
-
-```
-https://raw.githubusercontent.com/nmww/iptv-hunter/main/output/iptv.m3u
-```
-
-**备用 B：jsDelivr 镜像（国内节点可能有数小时缓存滞后，勿作首选）**
-
-```
-https://cdn.jsdelivr.net/gh/nmww/iptv-hunter@main/output/iptv.m3u
-```
-
 - **VLC**：`媒体 → 打开网络串流` 粘贴上面地址；或在 VLC 里 `视图 → 播放列表 → 右键“互联网”→ 添加为播客`。
 - **TiviMate / APTV / DIYP**：在“添加播放列表”处选“URL”，粘贴上面地址即可。
 - 仓库每日更新后，播放器拉取同一 URL 自动获得最新内容（无需改地址）。
-- 纯文本版：把上面地址里的 `iptv.m3u` 换成 `iptv.txt` 即可（Release 版：`.../latest/download/iptv.txt`）。
+- 纯文本版：把上面地址里的 `iptv.m3u` 换成 `iptv.txt` 即可。
+- **不要用** `cdn.jsdelivr.net/gh/...@main/...`（国内节点缓存经常卡在旧版，purge 也刷不动）。
 
-> 注：`output/iptv.m3u` 经 GitHub Actions 回写 `main` 分支，并同步发布到 `latest` 发行版供主用地址拉取。
+> 注：`output/iptv.m3u` 经 GitHub Actions 回写 `main` 分支，并同步发布到 `latest` 发行版。
 > 若看到「本批次无有效源」，通常是运行尚未结束或当天发现层为空，稍后刷新即可。
 
 ---
