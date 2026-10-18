@@ -44,7 +44,7 @@ jobs:
       - name: Run pipeline (discover→retire→fetch→dedup→validate→generate)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # 自带：发现层搜索配额
-        run: bash scripts/run_all.sh --max 300        # 验证最多 300 条，控制时长
+        run: bash scripts/run_all.sh                  # 全量验证（不再限 300 条）
 
       - name: Commit playlist back to GitHub (jsDelivr / raw 源)
         if: always()
