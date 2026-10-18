@@ -48,11 +48,7 @@ def _run(cmd, timeout):
 
 
 def layer1(url: str, timeout: int, log) -> tuple[bool, int]:
-    code, _, _ = _run(
-        ["curl", "-I", "-m", str(timeout), "-A", C.DEFAULT_UA, "-s", "-o", "/dev/null",
-         "-w", "%{http_code}"], timeout + 3)
-    ok = code in (0,)  # curl 退出码 0 表示完成；用 http_code 判断
-    # 重新取 http_code
+    """第一层：HTTP 探测，取 http_code。单次 curl 即可。"""
     rc, out, _ = _run(
         ["curl", "-I", "-m", str(timeout), "-A", C.DEFAULT_UA, "-s", "-o", "/dev/null",
          "-w", "%{http_code}"], timeout + 3)
@@ -95,6 +91,9 @@ def layer3(url: str, seconds: int, log) -> tuple[bool, str]:
 
 def validate_one(item, cfg, log):
     url = item["url"]
+    # 第三层（ffmpeg 真播放）默认不作为硬门槛：免费 IPTV 流在 CI 里 5s 拉流极易超时，
+    # 但 VLC 自身会重连/缓冲，能播的流不该因此被丢弃。设为 True 可恢复严格模式。
+    require_l3 = C._default_bool(cfg, "validate", "require_layer3", False)
     t0 = time.time()
     l1, status = layer1(url, C._default_int(cfg, "validate", "layer1_timeout", 5), log)
     if not l1:
@@ -113,20 +112,14 @@ def validate_one(item, cfg, log):
             "error": "layer2_no_codec",
         }
     l3, err = layer3(url, C._default_int(cfg, "validate", "verify_seconds", 5), log)
-    if not l3:
-        return {
-            "norm_url": item["norm_url"], "url": url, "ok": False,
-            "resp_time_ms": int((time.time() - t0) * 1000), "status": status,
-            "codec": info.get("codec", ""), "width": info.get("width", 0),
-            "height": info.get("height", 0), "geo_blocked": False,
-            "error": "layer3_play_fail:" + err[:120],
-        }
+    # 通过条件：第一层 + 第二层 + （第三层 或 不强制第三层）
+    ok = l1 and l2 and (l3 or not require_l3)
     return {
-        "norm_url": item["norm_url"], "url": url, "ok": True,
+        "norm_url": item["norm_url"], "url": url, "ok": ok,
         "resp_time_ms": int((time.time() - t0) * 1000), "status": status,
         "codec": info.get("codec", ""), "width": info.get("width", 0),
         "height": info.get("height", 0), "geo_blocked": False,  # 单区域无法可靠判定地理封锁
-        "error": "",
+        "error": "" if ok else ("layer3_play_fail:" + err[:120]),
     }
 
 
