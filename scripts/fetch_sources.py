@@ -3,15 +3,21 @@
 """
 fetch_sources.py — 抓取层（模块 B）
 
-遍历 registry.json 中所有非淘汰源的 playlist_url，下载 m3u 内容并解析出
-「频道名 + 流地址」对；同时读取 sources/local/ 下本地 m3u 一并合入。
-单源超时 10s、重试 2 次，某源全部失效时记录日志并跳过，不中断整体流程。
+数据来源（按信任度从高到低）：
+  1) sources/curated.json  —— 高信任直链种子（维护良好的公开 m3u，如 iptv-org /
+     fanmingming / YueChan 等），免严格验证直接收录，是播放可用性的骨架。
+  2) registry.json         —— 发现引擎每日新增的仓库源（需经三层验证）。
+  3) sources/local/*.m3u    —— 用户本地静态补充。
+
+解析时保留 #EXTINF 原始属性（tvg-id / tvg-name / tvg-logo / group-title），
+让黄金源自带台标与分组；对无属性的纯文本 m3u 则回退到启发式分组。
 
 产出：output/_channels_raw.json（供去重 / 验证消费）
 用法：python scripts/fetch_sources.py
 """
 
 import os
+import re
 import sys
 import argparse
 from pathlib import Path
@@ -20,48 +26,63 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import common as C  # noqa: E402
 
 REGISTRY_PATH = C.SOURCES_DIR / "registry.json"
+CURATED_PATH = C.SOURCES_DIR / "curated.json"
 LOCAL_DIR = C.SOURCES_DIR / "local"
 RAW_PATH = C.OUTPUT_DIR / "_channels_raw.json"
 
+_ATTR_RE = re.compile(r'(\w[\w-]*)="([^"]*)"')
+
 
 def parse_m3u(text: str, source_repo: str, playlist_url: str, log) -> list[dict]:
-    """解析 m3u 文本为 [{source_repo, playlist_url, channel, url}]。"""
+    """解析 m3u 文本为 [{source_repo, playlist_url, channel, url, attrs, trust}]。
+
+    attrs 保留 #EXTINF 中的 tvg-id / tvg-name / tvg-logo / group-title 等，
+    供生成阶段直接复用，提升播放器里的台标与分组体验。
+    """
     channels = []
     lines = text.splitlines()
-    cur_name = None
+    cur = None  # {"attrs": {...}, "name": "显示名"}
     for line in lines:
-        line = line.strip()
-        if not line:
+        line = line.rstrip("\n")
+        if not line.strip():
             continue
         if line.startswith("#EXTINF"):
-            # 频道名取最后一个逗号后的文本
+            attrs = {}
+            for k, v in _ATTR_RE.findall(line):
+                attrs[k.lower()] = v
             if "," in line:
-                cur_name = line.rsplit(",", 1)[-1].strip()
+                name = line.rsplit(",", 1)[-1].strip()
             else:
-                cur_name = None
+                name = attrs.get("tvg-name", "")
+            cur = {"attrs": attrs, "name": name}
         elif line.startswith("#"):
             continue  # 其他注释行（EXTM3U / EXT-X-...）跳过
         else:
             url = line.strip()
-            if cur_name and url:
+            if cur and url:
                 channels.append({
                     "source_repo": source_repo,
                     "playlist_url": playlist_url,
-                    "channel": cur_name,
+                    "channel": cur["name"],
                     "url": url,
+                    "attrs": cur["attrs"],
                 })
-            cur_name = None
+            cur = None
     return channels
 
 
-def fetch_one(url: str, source_repo: str, cfg, log) -> list[dict]:
+def fetch_one(url: str, source_repo: str, cfg, log, trust: str = "") -> list[dict]:
     timeout = C._default_int(cfg, "fetch", "timeout", 10)
     retries = C._default_int(cfg, "fetch", "retries", 2)
     sc, body, ok = C.http_get(url, timeout=timeout, retries=retries)
     if not ok or not body:
         log.warning("抓取失败（跳过）：%s", url)
         return []
-    return parse_m3u(body, source_repo, url, log)
+    chs = parse_m3u(body, source_repo, url, log)
+    if trust:
+        for c in chs:
+            c["trust"] = trust
+    return chs
 
 
 def main():
@@ -71,11 +92,26 @@ def main():
     cfg = C.load_config()
     log = C.log
 
+    all_channels = []
+
+    # ① 高信任直链种子（curated.json）——骨架来源
+    curated = C.read_json(CURATED_PATH, default=[])
+    n_curated_sources = 0
+    for item in curated:
+        url = item.get("url")
+        name = item.get("name", url or "?")
+        if not url:
+            continue
+        trust = item.get("trust", "high")
+        chs = fetch_one(url, name, cfg, log, trust=trust)
+        all_channels.extend(chs)
+        n_curated_sources += 1
+        log.info("  [curated] %s -> %d 条频道", name, len(chs))
+
+    # ② 已发现源（registry）
     reg = C.read_json(REGISTRY_PATH, default=[])
     active = [r for r in reg if r.get("status") != "retired"]
     log.info("registry 中有效源 %d 条，开始抓取", len(active))
-
-    all_channels = []
     for r in active:
         pu = r.get("playlist_url", "")
         if not pu:
@@ -84,7 +120,7 @@ def main():
         all_channels.extend(chs)
         log.info("  %s -> %d 条频道", r.get("source_repo", "?"), len(chs))
 
-    # 合入本地静态补充 m3u
+    # ③ 本地静态补充 m3u
     if LOCAL_DIR.exists():
         for f in sorted(LOCAL_DIR.glob("*.m3u*")):
             try:
@@ -95,13 +131,20 @@ def main():
             except Exception as e:  # noqa: BLE001
                 log.warning("读取本地 m3u 失败 %s: %s", f, e)
 
-    # 标注分组（启发式，供生成阶段归类）
+    # 标注分组与归一化
     for c in all_channels:
-        c["group"] = C.classify_group(c["channel"])
+        attrs = c.get("attrs") or {}
+        g = attrs.get("group-title")
+        if not g:
+            g = C.classify_group(c["channel"])
+        c["group"] = g
         c["norm_name"] = C.normalize_name(c["channel"])
         c["norm_url"] = C.normalize_url(c["url"])
+        if "trust" not in c:
+            c["trust"] = ""
 
-    log.info("抓取合计频道条目：%d", len(all_channels))
+    log.info("抓取合计频道条目：%d（其中 curated 源 %d 个）", len(all_channels),
+             n_curated_sources)
     if not args.dry_run:
         C.write_json(RAW_PATH, all_channels)
         log.info("已写入 %s", RAW_PATH)
