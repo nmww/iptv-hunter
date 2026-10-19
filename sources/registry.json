@@ -2583,5 +2583,104 @@
     "last_verified": null,
     "consecutive_failures": 0,
     "status": "discovered"
+  },
+  {
+    "source_repo": "abates/epg-editor",
+    "playlist_url": "https://raw.githubusercontent.com/abates/epg-editor/main/tests/__data__/input/m3u/edge-cases.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-20T04:57:10.845355+08:00",
+    "stars": 0,
+    "last_push": "2026-10-19T14:52:34Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "abates/epg-editor",
+    "playlist_url": "https://raw.githubusercontent.com/abates/epg-editor/main/tests/__data__/input/m3u/generic.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-20T04:57:10.847646+08:00",
+    "stars": 0,
+    "last_push": "2026-10-19T14:52:34Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "abates/epg-editor",
+    "playlist_url": "https://raw.githubusercontent.com/abates/epg-editor/main/tests/__data__/input/m3u/hdhomerun.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-20T04:57:10.849576+08:00",
+    "stars": 0,
+    "last_push": "2026-10-19T14:52:34Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "abates/epg-editor",
+    "playlist_url": "https://raw.githubusercontent.com/abates/epg-editor/main/tests/__data__/input/playlistDiff/hdhomerun-next.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-20T04:57:10.851448+08:00",
+    "stars": 0,
+    "last_push": "2026-10-19T14:52:34Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "DuckKota/iptv",
+    "playlist_url": "https://raw.githubusercontent.com/DuckKota/iptv/main/config/discovered.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-20T04:57:30.532429+08:00",
+    "stars": 0,
+    "last_push": "2026-10-19T18:19:30Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "euzu/tuliprox",
+    "playlist_url": "https://raw.githubusercontent.com/euzu/tuliprox/develop/test/fixtures/hls/reduced-retry/baseline.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-20T04:58:44.727617+08:00",
+    "stars": 581,
+    "last_push": "2026-10-19T16:16:53Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "euzu/tuliprox",
+    "playlist_url": "https://raw.githubusercontent.com/euzu/tuliprox/develop/test/fixtures/hls/reduced-retry/conflict.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-20T04:58:44.729553+08:00",
+    "stars": 581,
+    "last_push": "2026-10-19T16:16:53Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "euzu/tuliprox",
+    "playlist_url": "https://raw.githubusercontent.com/euzu/tuliprox/develop/test/fixtures/hls/reduced-retry/repaired.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-20T04:58:44.731473+08:00",
+    "stars": 581,
+    "last_push": "2026-10-19T16:16:53Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "krittawitst/iptv36",
+    "playlist_url": "https://raw.githubusercontent.com/krittawitst/iptv36/master/nosignal.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-20T05:05:01.787231+08:00",
+    "stars": 26,
+    "last_push": "2026-10-04T13:31:16Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
   }
 ]
