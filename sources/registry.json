@@ -2682,5 +2682,16 @@
     "last_verified": null,
     "consecutive_failures": 0,
     "status": "discovered"
+  },
+  {
+    "source_repo": "DhirajBro1/Dhiraj-TV",
+    "playlist_url": "https://raw.githubusercontent.com/DhirajBro1/Dhiraj-TV/main/playlists/index.country.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-24T03:52:28.669385+08:00",
+    "stars": 0,
+    "last_push": "2026-10-23T10:06:47Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
   }
 ]
