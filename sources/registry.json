@@ -2693,5 +2693,16 @@
     "last_verified": null,
     "consecutive_failures": 0,
     "status": "discovered"
+  },
+  {
+    "source_repo": "Mrbotrx/VIP-m3u-playlist",
+    "playlist_url": "https://raw.githubusercontent.com/Mrbotrx/VIP-m3u-playlist/main/Vip playlists/vip_kbpro.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-25T02:47:21.597658+08:00",
+    "stars": 1,
+    "last_push": "2026-10-24T17:58:13Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
   }
 ]
