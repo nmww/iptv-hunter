@@ -3254,5 +3254,16 @@
     "last_verified": null,
     "consecutive_failures": 0,
     "status": "discovered"
+  },
+  {
+    "source_repo": "yaolin-dev/OKVideoMac",
+    "playlist_url": "https://raw.githubusercontent.com/yaolin-dev/OKVideoMac/main/OKVideoMac/macOS/OKVideoMac/Native/DASHSmoke/fixtures/hls/manifest.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-27T05:36:54.653491+08:00",
+    "stars": 111,
+    "last_push": "2026-10-26T15:49:25Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
   }
 ]
