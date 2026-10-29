@@ -3265,5 +3265,16 @@
     "last_verified": null,
     "consecutive_failures": 0,
     "status": "discovered"
+  },
+  {
+    "source_repo": "echox-94/iptv-sports-filter",
+    "playlist_url": "https://raw.githubusercontent.com/echox-94/iptv-sports-filter/master/playlist.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-10-30T05:00:46.779172+08:00",
+    "stars": 0,
+    "last_push": "2026-10-29T05:29:02Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
   }
 ]
