@@ -3298,5 +3298,16 @@
     "last_verified": null,
     "consecutive_failures": 0,
     "status": "discovered"
+  },
+  {
+    "source_repo": "movena-app/movena",
+    "playlist_url": "https://raw.githubusercontent.com/movena-app/movena/main/tests/fixtures/sample-playlist.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-04T05:52:12.701215+08:00",
+    "stars": 21,
+    "last_push": "2026-11-01T23:18:12Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
   }
 ]
