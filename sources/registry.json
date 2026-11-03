@@ -3276,5 +3276,27 @@
     "last_verified": null,
     "consecutive_failures": 0,
     "status": "discovered"
+  },
+  {
+    "source_repo": "tedwin-Main/iptv-live",
+    "playlist_url": "https://raw.githubusercontent.com/tedwin-Main/iptv-live/main/playlist/overstar.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-03T07:25:17.422487+08:00",
+    "stars": 0,
+    "last_push": "2026-11-02T11:36:30Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "tedwin-Main/iptv-live",
+    "playlist_url": "https://raw.githubusercontent.com/tedwin-Main/iptv-live/main/public/playlist.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-03T07:25:17.425074+08:00",
+    "stars": 0,
+    "last_push": "2026-11-02T11:36:30Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
   }
 ]
