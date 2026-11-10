@@ -3320,5 +3320,38 @@
     "last_verified": null,
     "consecutive_failures": 0,
     "status": "discovered"
+  },
+  {
+    "source_repo": "faizanahmedworld-fa/AerialTV",
+    "playlist_url": "https://raw.githubusercontent.com/faizanahmedworld-fa/AerialTV/main/app/src/test/resources/pk.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-10T08:01:53.563206+08:00",
+    "stars": 21,
+    "last_push": "2026-11-01T14:52:13Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "faizanahmedworld-fa/AerialTV",
+    "playlist_url": "https://raw.githubusercontent.com/faizanahmedworld-fa/AerialTV/main/app/src/test/resources/ua.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-10T08:01:53.564738+08:00",
+    "stars": 21,
+    "last_push": "2026-11-01T14:52:13Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "garztcz/iptv-badminton-sports",
+    "playlist_url": "https://raw.githubusercontent.com/garztcz/iptv-badminton-sports/main/rheza-badminton-sports.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-10T08:05:37.456144+08:00",
+    "stars": 0,
+    "last_push": "2026-11-09T09:01:48Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
   }
 ]
