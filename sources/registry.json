@@ -3364,5 +3364,137 @@
     "last_verified": null,
     "consecutive_failures": 0,
     "status": "discovered"
+  },
+  {
+    "source_repo": "realityofai32-stack/PS4-IPTV",
+    "playlist_url": "https://raw.githubusercontent.com/realityofai32-stack/PS4-IPTV/main/tests/fixtures/m3u/basic.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-13T06:10:31.482116+08:00",
+    "stars": 22,
+    "last_push": "2026-11-07T16:14:43Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "realityofai32-stack/PS4-IPTV",
+    "playlist_url": "https://raw.githubusercontent.com/realityofai32-stack/PS4-IPTV/main/tests/fixtures/m3u/basic_bom_crlf.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-13T06:10:31.484917+08:00",
+    "stars": 22,
+    "last_push": "2026-11-07T16:14:43Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "realityofai32-stack/PS4-IPTV",
+    "playlist_url": "https://raw.githubusercontent.com/realityofai32-stack/PS4-IPTV/main/tests/fixtures/m3u/basic_cr.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-13T06:10:31.487385+08:00",
+    "stars": 22,
+    "last_push": "2026-11-07T16:14:43Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "realityofai32-stack/PS4-IPTV",
+    "playlist_url": "https://raw.githubusercontent.com/realityofai32-stack/PS4-IPTV/main/tests/fixtures/m3u/basic_crlf.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-13T06:10:31.489906+08:00",
+    "stars": 22,
+    "last_push": "2026-11-07T16:14:43Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "realityofai32-stack/PS4-IPTV",
+    "playlist_url": "https://raw.githubusercontent.com/realityofai32-stack/PS4-IPTV/main/tests/fixtures/m3u/edge_cases.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-13T06:10:31.492390+08:00",
+    "stars": 22,
+    "last_push": "2026-11-07T16:14:43Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "realityofai32-stack/PS4-IPTV",
+    "playlist_url": "https://raw.githubusercontent.com/realityofai32-stack/PS4-IPTV/main/tests/fixtures/m3u/empty.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-13T06:10:31.494794+08:00",
+    "stars": 22,
+    "last_push": "2026-11-07T16:14:43Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "realityofai32-stack/PS4-IPTV",
+    "playlist_url": "https://raw.githubusercontent.com/realityofai32-stack/PS4-IPTV/main/tests/fixtures/m3u/extgrp.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-13T06:10:31.497213+08:00",
+    "stars": 22,
+    "last_push": "2026-11-07T16:14:43Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "realityofai32-stack/PS4-IPTV",
+    "playlist_url": "https://raw.githubusercontent.com/realityofai32-stack/PS4-IPTV/main/tests/fixtures/m3u/hls_master.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-13T06:10:31.499633+08:00",
+    "stars": 22,
+    "last_push": "2026-11-07T16:14:43Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "realityofai32-stack/PS4-IPTV",
+    "playlist_url": "https://raw.githubusercontent.com/realityofai32-stack/PS4-IPTV/main/tests/fixtures/m3u/hls_media.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-13T06:10:31.502093+08:00",
+    "stars": 22,
+    "last_push": "2026-11-07T16:14:43Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "realityofai32-stack/PS4-IPTV",
+    "playlist_url": "https://raw.githubusercontent.com/realityofai32-stack/PS4-IPTV/main/tests/fixtures/m3u/invalid_utf8.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-13T06:10:31.504523+08:00",
+    "stars": 22,
+    "last_push": "2026-11-07T16:14:43Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "realityofai32-stack/PS4-IPTV",
+    "playlist_url": "https://raw.githubusercontent.com/realityofai32-stack/PS4-IPTV/main/tests/fixtures/m3u/plain.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-13T06:10:31.507041+08:00",
+    "stars": 22,
+    "last_push": "2026-11-07T16:14:43Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "realityofai32-stack/PS4-IPTV",
+    "playlist_url": "https://raw.githubusercontent.com/realityofai32-stack/PS4-IPTV/main/tests/fixtures/m3u/utf16.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-13T06:10:31.509483+08:00",
+    "stars": 22,
+    "last_push": "2026-11-07T16:14:43Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
   }
 ]
