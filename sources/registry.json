@@ -3507,5 +3507,16 @@
     "last_verified": null,
     "consecutive_failures": 0,
     "status": "discovered"
+  },
+  {
+    "source_repo": "amedeguerre-cpu/okxiptv-data",
+    "playlist_url": "https://raw.githubusercontent.com/amedeguerre-cpu/okxiptv-data/main/demo/okx-demo.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-18T07:32:27.099744+08:00",
+    "stars": 0,
+    "last_push": "2026-11-17T14:09:54Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
   }
 ]
