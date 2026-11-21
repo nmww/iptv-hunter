@@ -4068,5 +4068,16 @@
     "last_verified": null,
     "consecutive_failures": 0,
     "status": "discovered"
+  },
+  {
+    "source_repo": "Garrietta/US-Cable-Live",
+    "playlist_url": "https://raw.githubusercontent.com/Garrietta/US-Cable-Live/main/US-Cable-Live.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-22T05:38:58.749959+08:00",
+    "stars": 0,
+    "last_push": "2026-11-21T19:28:02Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
   }
 ]
