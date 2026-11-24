@@ -4101,5 +4101,16 @@
     "last_verified": null,
     "consecutive_failures": 0,
     "status": "discovered"
+  },
+  {
+    "source_repo": "ashik4u/iptv-m3u-bot",
+    "playlist_url": "https://raw.githubusercontent.com/ashik4u/iptv-m3u-bot/main/output/all.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-24T10:55:31.142581+08:00",
+    "stars": 21,
+    "last_push": "2026-11-23T22:42:46Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
   }
 ]
