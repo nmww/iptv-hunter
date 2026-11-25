@@ -4112,5 +4112,16 @@
     "last_verified": null,
     "consecutive_failures": 0,
     "status": "discovered"
+  },
+  {
+    "source_repo": "ZUI-WebOS/ZUI-IPTV-Player",
+    "playlist_url": "https://raw.githubusercontent.com/ZUI-WebOS/ZUI-IPTV-Player/main/public/test.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-25T08:43:17.213586+08:00",
+    "stars": 21,
+    "last_push": "2026-11-24T16:01:16Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
   }
 ]
