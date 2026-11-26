@@ -4123,5 +4123,159 @@
     "last_verified": null,
     "consecutive_failures": 0,
     "status": "discovered"
+  },
+  {
+    "source_repo": "Amitk2108/tiviate",
+    "playlist_url": "https://raw.githubusercontent.com/Amitk2108/tiviate/main/app/src/androidTest/assets/fixture/hls/audio_de/index.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-26T08:14:23.367877+08:00",
+    "stars": 22,
+    "last_push": "2026-11-25T08:16:57Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "Amitk2108/tiviate",
+    "playlist_url": "https://raw.githubusercontent.com/Amitk2108/tiviate/main/app/src/androidTest/assets/fixture/hls/audio_en/index.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-26T08:14:23.370521+08:00",
+    "stars": 22,
+    "last_push": "2026-11-25T08:16:57Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "Amitk2108/tiviate",
+    "playlist_url": "https://raw.githubusercontent.com/Amitk2108/tiviate/main/app/src/androidTest/assets/fixture/hls/master.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-26T08:14:23.373049+08:00",
+    "stars": 22,
+    "last_push": "2026-11-25T08:16:57Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "Amitk2108/tiviate",
+    "playlist_url": "https://raw.githubusercontent.com/Amitk2108/tiviate/main/app/src/androidTest/assets/fixture/hls/subs/index.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-26T08:14:23.375590+08:00",
+    "stars": 22,
+    "last_push": "2026-11-25T08:16:57Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "Amitk2108/tiviate",
+    "playlist_url": "https://raw.githubusercontent.com/Amitk2108/tiviate/main/app/src/androidTest/assets/fixture/hls/video/index.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-26T08:14:23.378074+08:00",
+    "stars": 22,
+    "last_push": "2026-11-25T08:16:57Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "Inliang/tvbox",
+    "playlist_url": "https://raw.githubusercontent.com/Inliang/tvbox/main/lib/iptv.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-26T08:14:24.206140+08:00",
+    "stars": 21,
+    "last_push": "2026-11-25T22:00:20Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "Inliang/tvbox",
+    "playlist_url": "https://raw.githubusercontent.com/Inliang/tvbox/main/lib/live-4k.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-26T08:14:24.208687+08:00",
+    "stars": 21,
+    "last_push": "2026-11-25T22:00:20Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "Inliang/tvbox",
+    "playlist_url": "https://raw.githubusercontent.com/Inliang/tvbox/main/lib/live-all.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-26T08:14:24.211231+08:00",
+    "stars": 21,
+    "last_push": "2026-11-25T22:00:20Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "Inliang/tvbox",
+    "playlist_url": "https://raw.githubusercontent.com/Inliang/tvbox/main/lib/live-bestfan.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-26T08:14:24.213728+08:00",
+    "stars": 21,
+    "last_push": "2026-11-25T22:00:20Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "Inliang/tvbox",
+    "playlist_url": "https://raw.githubusercontent.com/Inliang/tvbox/main/lib/live-fast.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-26T08:14:24.216281+08:00",
+    "stars": 21,
+    "last_push": "2026-11-25T22:00:20Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "Inliang/tvbox",
+    "playlist_url": "https://raw.githubusercontent.com/Inliang/tvbox/main/lib/live-hmt.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-26T08:14:24.218853+08:00",
+    "stars": 21,
+    "last_push": "2026-11-25T22:00:20Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "Inliang/tvbox",
+    "playlist_url": "https://raw.githubusercontent.com/Inliang/tvbox/main/lib/live-iptvorg.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-26T08:14:24.221477+08:00",
+    "stars": 21,
+    "last_push": "2026-11-25T22:00:20Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "Inliang/tvbox",
+    "playlist_url": "https://raw.githubusercontent.com/Inliang/tvbox/main/lib/live-kaige.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-26T08:14:24.224138+08:00",
+    "stars": 21,
+    "last_push": "2026-11-25T22:00:20Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "Inliang/tvbox",
+    "playlist_url": "https://raw.githubusercontent.com/Inliang/tvbox/main/lib/live-vbskycn.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-26T08:14:24.226802+08:00",
+    "stars": 21,
+    "last_push": "2026-11-25T22:00:20Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
   }
 ]
