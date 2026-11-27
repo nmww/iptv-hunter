@@ -4277,5 +4277,49 @@
     "last_verified": null,
     "consecutive_failures": 0,
     "status": "discovered"
+  },
+  {
+    "source_repo": "Trias1/tv-zt",
+    "playlist_url": "https://raw.githubusercontent.com/Trias1/tv-zt/main/iptv/id-active.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-27T08:24:20.152430+08:00",
+    "stars": 0,
+    "last_push": "2026-11-26T15:16:02Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "Trias1/tv-zt",
+    "playlist_url": "https://raw.githubusercontent.com/Trias1/tv-zt/main/iptv/id-national.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-27T08:24:20.154904+08:00",
+    "stars": 0,
+    "last_push": "2026-11-26T15:16:02Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "siamform/yumeiro",
+    "playlist_url": "https://raw.githubusercontent.com/siamform/yumeiro/main/app/src/test/resources/live/yumeiro_live_sample.m3u",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-27T08:33:19.983857+08:00",
+    "stars": 22,
+    "last_push": "2026-11-27T00:26:52Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
+  },
+  {
+    "source_repo": "siamform/yumeiro",
+    "playlist_url": "https://raw.githubusercontent.com/siamform/yumeiro/main/app/src/test/resources/terabox/anonymous-preview-480.m3u8",
+    "discovered_via": "github_search",
+    "discovered_at": "2026-11-27T08:33:19.986195+08:00",
+    "stars": 22,
+    "last_push": "2026-11-27T00:26:52Z",
+    "last_verified": null,
+    "consecutive_failures": 0,
+    "status": "discovered"
   }
 ]
